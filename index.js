@@ -2021,7 +2021,7 @@ app.post("/cost/upload", async (req, res) => {
           var line_cnt=0;
           lineReader.eachLine('uploaded_files/myupload.csv', async function(line, last) {
           line_cnt++;
-          if (line_cnt >= 2)
+          if (line_cnt >= 3)
           {
            var arr = line.split(",");
            for(var i=0;i<arr.length;i++) {
@@ -2030,7 +2030,11 @@ app.post("/cost/upload", async (req, res) => {
             console.log("token #"+ token_number + ") " + arr[i]);
            }
            console.log("---");
-           if (arr.length==5) arr[5]="";
+           if (arr.length==5)
+           {
+            arr[5]="";
+            console.log("token #"+ 5 + ") " + arr[5]);
+           }
            sql="insert into cost(category,part_no,model_no,unit,manufacturer_suggested_retail_price,sub_price_list)";
            sql += " values ('";
            sql += arr[0];
