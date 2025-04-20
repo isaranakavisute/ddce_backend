@@ -2537,7 +2537,7 @@ app.get("/downloadfiletocomputer", (req, res) => {
     console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
 
     res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
-            console.log("Error : ", error)
+            console.log("Error : ", err)
         });
 
     res.json({ "File": "downloaded" });
