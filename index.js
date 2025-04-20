@@ -2107,6 +2107,131 @@ app.post("/cost/deleteall", async (req, res) => {
 
 
 
+app.post("/exchange_rate/upload", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+     var oldpath = files.file[0].filepath;
+     var newpath =  'uploaded_files/myupload.xlsx';
+     fs.rename(oldpath, newpath, function (err) {
+       if (err)
+       {
+         res.writeHead(200, {'Content-Type': 'application/json'});
+         res.write
+         (
+          JSON.stringify
+           (
+            {
+             "status":true,
+             "upload_excel":
+              {
+               "result": "fail",
+               "oldpath": oldpath,
+               "newpath": newpath
+              }
+             }
+           )
+          );
+          res.end();
+       }
+       else
+       {
+          var wb = new Excel.Workbook();
+          wb.xlsx.readFile('uploaded_files/myupload.xlsx').then(function(){
+          wb.csv.writeFile('uploaded_files/myupload.csv' )
+          .then(async function() {
+          console.log("saved csv...done");
+          var line_cnt=0;
+          lineReader.eachLine('uploaded_files/myupload.csv', async function(line, last) {
+          line_cnt++;
+          if (line_cnt >= 3)
+          {
+           var arr = line.split(",");
+           for(var i=0;i<arr.length;i++) {
+            if (arr[i]=="" || arr[i].indexOf('sharedFormula')!=-1) arr[i] = "blank";
+            var token_number = i + 1;
+            console.log("token #"+ token_number + ") " + arr[i]);
+           }
+//           if (arr.length==5)
+//           {
+//            arr[5]="";
+//            console.log("token #"+ 5 + ") " + arr[5]);
+//           }
+           console.log("---");
+
+           sql="insert into exchange_rate(usd_br,usd_cr,usd_pr,usd_qr,eur_br,eur_cr,eur_qr,eur_pr,jpy_br,jpy_cr,jpy_pr,jpy_qr,rate_remark,rate_file_name,rate_path)";
+           sql += " values (";
+           sql += arr[0];
+           sql += ",";
+           sql += arr[1];
+           sql += ",";
+           sql += arr[2];
+           sql += ",";
+           sql += arr[3];
+           sql += ",";
+           sql += arr[4];
+           sql += ",";
+           sql += arr[5];
+
+           sql += ",";
+           sql += arr[6];
+
+           sql += ",";
+           sql += arr[7];
+
+           sql += ",";
+           sql += arr[8];
+
+           sql += ",";
+           sql += arr[9];
+
+           sql += ",";
+           sql += arr[10];
+
+           sql += ",";
+           sql += arr[11];
+
+           sql += ",'";
+           sql += arr[12];
+
+           sql += "','";
+           sql += arr[13];
+
+           sql += "','";
+           sql += arr[14];
+
+           sql += "')";
+           console.log(sql);
+           await db.query(sql);
+           }
+          if(last){
+          }
+          });
+          });
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.write
+          (
+           JSON.stringify
+           (
+            {
+             "status":true,
+             "upload_excel":
+              {
+               "result": "pass",
+               "oldpath": oldpath,
+               "newpath": newpath
+              }
+             }
+           )
+          );
+          res.end();
+         });
+        }
+     });
+     });
+});
 
 
 
