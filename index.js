@@ -1577,9 +1577,9 @@ app.post("/distributor/add", async (req, res) => {
     sql += "(company_id,";
     sql += "master_price_list,";
     sql += "master_pricelist_showing_name)";
-    sql += " values ('";
+    sql += " values (";
     sql += req.body.company_id;
-    sql += "','";
+    sql += ",'";
     sql += req.body.master_price_list;
     sql += "','";
     sql += req.body.master_pricelist_showing_name;
@@ -1614,9 +1614,9 @@ app.post("/distributor/update", async (req, res) => {
     sql += "',";
     sql += "master_pricelist_showing_name='";
     sql += req.body.master_pricelist_showing_name;
-    sql += "',company_id='";
+    sql += "',company_id=";
     sql += req.body.company_id;
-    sql += "' where mc_id=";
+    sql += " where mc_id=";
     sql += req.body.mc_id;
     console.log(sql);
     await db.query(sql);
