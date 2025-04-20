@@ -2508,8 +2508,8 @@ app.post("/exchange_rate_history/download", async (req, res) => {
                  "status":true,
                  "show download link":
                   {
-                   "document_name": results.data.rate_doc_name,
-                   "document_path": results.data.rate_doc_path,
+                   "document_name": results[0].rate_doc_name,
+                   "document_path": results[0].rate_doc_path,
                   }
                  }
                )
