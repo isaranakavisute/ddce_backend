@@ -1430,6 +1430,133 @@ app.post("/master_tmp/deleteall", async (req, res) => {
  res.end();
 });
 
+app.post("/company/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from company";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/company/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into company";
+    sql += "(company_name,";
+    sql += "company_info,";
+    sql += "company_phone,";
+    sql += "company_fax,";
+    sql += "company_email,";
+    sql += "company_pic)";
+    sql += " values ('";
+    sql += req.body.company_name;
+    sql += "','";
+    sql += req.body.company_info;
+    sql += "','";
+    sql += req.body.company_phone;
+    sql += "','";
+    sql += req.body.company_fax;
+    sql += "','";
+    sql += req.body.company_email;
+    sql += "','";
+    sql += req.body.company_pic;
+    sql += "')";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_company":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/company/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "update company set ";
+    sql += "company_name='";
+    sql += req.body.company_name
+    sql += "',";
+    sql += "company_info='";
+    sql += req.body.company_info
+    sql += "',";
+    sql += "company_phone='";
+    sql += req.body.company_phone;
+    sql += "',";
+    sql += "company_fax='";
+    sql += req.body.company_fax;
+    sql += "',";
+    sql += "company_email='";
+    sql += req.body.company_email;
+    sql += "',";
+    sql += "company_pic='";
+    sql += req.body.company_pic;
+    sql += "' where company_id=";
+    sql += req.body.company_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_company":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/company/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from company where ";
+    sql += "company_id=";
+    sql += req.body.company_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from company":
+                  {
+                   "result": "pass",
+                   "id": req.body.company_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
 app.use("/webcrawler", webCrawlerRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
