@@ -2510,7 +2510,7 @@ app.post("/exchange_rate_history/download", async (req, res) => {
                   {
                    "document_name": results[0].rate_doc_name,
                    "document_path": results[0].rate_doc_path,
-                   "document_download_link": "http://deploy-aws.com:3006/exchange_rate_history/downloadfiletocomputer?fileurl="+results[0].rate_doc_name
+                   "document_download_link": "http://deploy-aws.com:3006/downloadfiletocomputer?fileurl="+results[0].rate_doc_name
                   }
                  }
                )
@@ -2520,7 +2520,7 @@ app.post("/exchange_rate_history/download", async (req, res) => {
 
 //downloadfiletocomputer
 //fileurl=http://deploy-aws.com:3006/uploaded_files/exchange_rate_template_version_1.xlsx
-app.get("/exchange_rate_history/downloadfiletocomputer", (req, res) => {
+app.get("/downloadfiletocomputer", (req, res) => {
     console.log(req.query.fileurl);
     //const file = ${__dirname}+"/uploaded_files/"+req.query.fileurl`;
     //console.log(file);
