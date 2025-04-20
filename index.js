@@ -2104,9 +2104,6 @@ app.post("/cost/deleteall", async (req, res) => {
  res.end();
 });
 
-
-
-
 app.post("/exchange_rate/upload", async (req, res) => {
     const db = require('./db');
     const config = require('./config');
@@ -2303,7 +2300,99 @@ app.post("/exchange_rate/add", async (req, res) => {
 
 });
 
+app.post("/exchange_rate/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
 
+    sql = "update exchange_rate set ";
+
+    sql += "usd_br=";
+    sql += req.body.usd_br;
+
+    sql += ",";
+    sql += "usd_cr=";
+    sql += req.body.usd_cr;
+
+    sql += ",";
+    sql += "usd_qr=";
+    sql += req.body.usd_qr;
+
+    sql += ",";
+    sql += "usd_pr=";
+    sql += req.body.usd_pr;
+
+
+
+
+    sql += ",";
+    sql += "eur_br=";
+    sql += req.body.eur_br;
+
+    sql += ",";
+    sql += "eur_cr=";
+    sql += req.body.eur_cr;
+
+    sql += ",";
+    sql += "eur_qr=";
+    sql += req.body.eur_cr;
+
+    sql += ",";
+    sql += "eur_pr=";
+    sql += req.body.eur_pr;
+
+
+
+    sql += ",";
+    sql += "jpy_br=";
+    sql += req.body.jpy_br;
+
+    sql += ",";
+    sql += "jpy_cr=";
+    sql += req.body.jpy_cr;
+
+    sql += ",";
+    sql += "jpy_qr=";
+    sql += req.body.jpy_qr;
+
+    sql += ",";
+    sql += "jpy_pr=";
+    sql += req.body.jpy_pr;
+
+
+
+    sql += ",";
+    sql += "rate_remark='";
+    sql += req.body.rate_remark;
+
+    sql += "',";
+    sql += "rate_file_name='";
+    sql += req.body.rate_file_name;
+
+    sql += "',";
+    sql += "rate_path='";
+    sql += req.body.rate_path;
+
+    sql += "' where rate_id=";
+    sql += req.body.rate_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_exchange_rate":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
 
 
 
