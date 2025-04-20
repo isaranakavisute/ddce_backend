@@ -2528,7 +2528,11 @@ app.get("/downloadfiletocomputer", (req, res) => {
 
     var filePath = "uploaded_files/"; // Or format the path using the `id` rest param
     var fileName = req.query.fileurl; // The default name the browser will use
-    res.download(filePath, fileName);
+    //res.download(filePath, fileName);
+
+    res.download(filePath, fileName, function (error) {
+            console.log("Error : ", error)
+        });
 
     res.json({ "File": "downloaded" });
 
