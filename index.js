@@ -2573,6 +2573,7 @@ app.get("/downloadfiletocomputer", (req, res) => {
 //         }
 //       });
 
+        console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
         res.send(__dirname + '/uploaded_files/' + req.query.fileurl);
 
 
