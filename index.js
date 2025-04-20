@@ -2510,7 +2510,7 @@ app.post("/exchange_rate_history/download", async (req, res) => {
                   {
                    "document_name": results[0].rate_doc_name,
                    "document_path": results[0].rate_doc_path,
-                   "document_download_link": "http://deploy-aws.com:3006/downloadfiletocomputer?fileurl="+http://deploy-aws.com:3006/uploaded_files/"+results[0].rate_doc_name
+                   "document_download_link": "http://deploy-aws.com:3006/downloadfiletocomputer?fileurl="+"http://deploy-aws.com:3006/uploaded_files/"+results[0].rate_doc_name
                   }
                  }
                )
