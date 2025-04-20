@@ -1736,6 +1736,79 @@ app.post("/cost_history/delete", async (req, res) => {
     res.end();
 });
 
+app.post("/supplier/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from supplier_matching";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/supplier/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into supplier_matching";
+    sql += "(sup_name,";
+    sql += "master_pricelist_name,sup_short_name)";
+    sql += " values ('";
+    sql += req.body.sup_name;
+    sql += "','";
+    sql += req.body.master_pricelist_name;
+    sql += "','";
+    sql += req.body.sup_short_name;
+    sql += "')";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_supplier":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/supplier/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from supplier_matching where ";
+    sql += "sup_id=";
+    sql += req.body.sup_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from supplier":
+                  {
+                   "result": "pass",
+                   "id": req.body.mc_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
 
 
 
