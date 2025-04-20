@@ -8,7 +8,7 @@ router.post('/', async function(req, res, next)
  const db = require('../db');
  const config = require('../config');
  const helper = require('../helper');
- sql = "select * from user where usr='" + req.body.usr + "' and pwd='" + req.body.pwd + "' and access='" + req.body.access  + "'";
+ sql = "select * from user where email='" + req.body.usr + "' and password='" + req.body.pwd + "' and access_type='" + req.body.access  + "'";
  console.log(sql);
  var results = await db.query(sql);
  console.log(results);

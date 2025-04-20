@@ -11,7 +11,7 @@ req.body.id,
 const db = require('../db');
 const config = require('../config');
 const helper = require('../helper');
-var sql = "select * from user where Id=" + req.body.id ;
+var sql = "select * from user where user_id=" + req.body.id ;
 console.log(sql);
 await db.query(sql);
 const rows = await db.query(sql);
