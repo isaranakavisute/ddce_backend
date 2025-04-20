@@ -2233,6 +2233,77 @@ app.post("/exchange_rate/upload", async (req, res) => {
      });
 });
 
+app.post("/exchange_rate/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from exchange_rate";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/exchange_rate/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into exchange_rate(usd_br,usd_cr,usd_pr,usd_qr,eur_br,eur_cr,eur_qr,eur_pr,jpy_br,jpy_cr,jpy_pr,jpy_qr,rate_remark,rate_file_name,rate_path)";
+    sql += " values ("
+    sql += req.body.usd_br;
+    sql += ",";
+    sql += req.body.usd_cr;
+    sql += ",";
+    sql += usd_pr;
+    sql += ",";
+    sql += usd_qr;
+    sql += ",";
+    sql += eur_br;
+    sql += ",";
+    sql += eur_cr;
+    sql += ",";
+    sql += eur_qr;
+    sql += ",";
+    sql += eur_pr;
+    sql += ",";
+    sql += jpy_br;
+    sql += ",";
+    sql += jpy_cr;
+    sql += ",";
+    sql += jpy_pr;
+    sql += ",";
+    sql += jpy_qr;
+    sql += ",'";
+    sql += rate_remark;
+    sql += "','";
+    sql += rate_file_name
+    sql += "','";
+    sql += rate_path
+    sql += "'";
+    sql += ")";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_exchange_rate":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+
+
+});
+
+
 
 
 
