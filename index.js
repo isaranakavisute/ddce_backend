@@ -2111,7 +2111,8 @@ app.post("/exchange_rate/upload", async (req, res) => {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
      var oldpath = files.file[0].filepath;
-     var newpath =  'uploaded_files/myupload.xlsx';
+     //var newpath =  'uploaded_files/myupload.xlsx';
+     var newpath = 'uploaded_files/' + files.file[0].originalFilename;
      fs.rename(oldpath, newpath, function (err) {
        if (err)
        {
@@ -2136,7 +2137,8 @@ app.post("/exchange_rate/upload", async (req, res) => {
        else
        {
           var wb = new Excel.Workbook();
-          wb.xlsx.readFile('uploaded_files/myupload.xlsx').then(function(){
+          //wb.xlsx.readFile('uploaded_files/myupload.xlsx').then(function(){
+          wb.xlsx.readFile(newpath).then(function(){
           wb.csv.writeFile('uploaded_files/myupload.csv' )
           .then(async function() {
           console.log("saved csv...done");
@@ -2296,8 +2298,6 @@ app.post("/exchange_rate/add", async (req, res) => {
                )
               );
     res.end();
-
-
 });
 
 app.post("/exchange_rate/update", async (req, res) => {
@@ -2321,9 +2321,6 @@ app.post("/exchange_rate/update", async (req, res) => {
     sql += ",";
     sql += "usd_pr=";
     sql += req.body.usd_pr;
-
-
-
 
     sql += ",";
     sql += "eur_br=";
@@ -2394,8 +2391,6 @@ app.post("/exchange_rate/update", async (req, res) => {
     res.end();
 });
 
-
-
 app.post("/exchange_rate/delete", async (req, res) => {
     const db = require('./db');
     const config = require('./config');
@@ -2424,6 +2419,103 @@ app.post("/exchange_rate/delete", async (req, res) => {
     res.end();
 });
 
+app.post("/exchange_rate_history/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from exchange_rate_history";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/exchange_rate_history/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from exchange_rate_history where ";
+    sql += "rate_doc_id=";
+    sql += req.body.rate_doc_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from exchange_rate_history":
+                  {
+                   "result": "pass",
+                   "id": req.body.rate_doc_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/exchange_rate_history/upload", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into exchange_rate_history(rate_doc_name,rate_doc_path) values ('";
+    sql += req.body.rate_doc_name;
+    sql += "','";
+    sql += req.body.rate_doc_path;
+    sql += "')";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "upload exchange_rate document name and document path":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/exchange_rate_history/download", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "select * from exchange_rate_history where ";
+    sql += "rate_doc_id=";
+    sql += req.body.rate_doc_id;
+    console.log(sql);
+    //await db.query(sql);
+    var results = await db.query(sql);
+    console.log(results)
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "show download link":
+                  {
+                   "document_name": results.data.rate_doc_name,
+                   "document_path": results.data.rate_doc_path,
+                  }
+                 }
+               )
+              );
+    res.end();
+});
 
 
 app.use("/webcrawler", webCrawlerRouter);
