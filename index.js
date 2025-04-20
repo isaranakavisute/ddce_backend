@@ -2985,6 +2985,30 @@ app.post("/quotation_file_record/upload", async (req, res) => {
           );
           res.end();
        }
+       else
+       {
+
+
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.write
+                   (
+                    JSON.stringify
+                    (
+                     {
+                      "status":true,
+                      "upload_pdf":
+                       {
+                        "result": "pass",
+                        "oldpath": oldpath,
+                        "newpath": newpath
+                       }
+                      }
+                    )
+                   );
+           res.end();
+
+
+       }
       });
       });
      });
