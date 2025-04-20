@@ -2552,23 +2552,49 @@ app.get("/downloadfiletocomputer", (req, res) => {
 
     //res.json({ "File": "downloaded" });
 
+    if (req.query.fileurl.indexOf('pdf') >= 0){
+       //pdf
 
-    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "download.xlsx");
+       res.setHeader("Content-Type", "text/pdf");
+       res.setHeader("Content-Disposition", "attachment; filename=" + "download.pdf");
+       const buff =  fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl);
+       fs.writeFileSync(res, buff);
+       res.end();
+
+      }
+    else {
+      //xlsx
+      res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "download.xlsx");
+
+       var wb = new Excel.Workbook();
+          wb.xlsx.readFile(__dirname + '/uploaded_files/' + req.query.fileurl).then(function(){
+            wb.xlsx.write(res).then(() => {
+
+              //res.json({ "File": "downloaded" });
+              res.end();
+
+
+            });
+          });
+    }
+
+
+
+    //res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "download.xlsx");
 
     // Write the workbook to the response object
     //workbook.xlsx.write(res).then(() => res.end());
 
-    var wb = new Excel.Workbook();
-    wb.xlsx.readFile(__dirname + '/uploaded_files/' + req.query.fileurl).then(function(){
-      wb.xlsx.write(res).then(() => {
-
-        //res.json({ "File": "downloaded" });
-        res.end();
-
-
-      }
-      );
-    });
+//    var wb = new Excel.Workbook();
+//    wb.xlsx.readFile(__dirname + '/uploaded_files/' + req.query.fileurl).then(function(){
+//      wb.xlsx.write(res).then(() => {
+//
+//        //res.json({ "File": "downloaded" });
+//        res.end();
+//
+//
+//      });
+//    });
 });
 
 app.post("/news_info/listall", async (req, res) => {
