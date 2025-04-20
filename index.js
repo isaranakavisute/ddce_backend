@@ -2555,8 +2555,8 @@ app.get("/downloadfiletocomputer", (req, res) => {
     if (req.query.fileurl.indexOf('pdf') >= 0){
        //pdf
 
-//       res.setHeader("Content-Type", "text/pdf");
-//       res.setHeader("Content-Disposition", "attachment; filename=" + "download.pdf");
+       res.setHeader("Content-Type", "application/pdf");
+       res.setHeader("Content-Disposition", "attachment; filename=" + "download.pdf");
 
        //const buff =  fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl);
        //fs.writeFileSync(res, buff);
@@ -2565,16 +2565,16 @@ app.get("/downloadfiletocomputer", (req, res) => {
 //             res.send(file);
 //          });
 
-//       fs.readFile(__dirname + '/uploaded_files/' + req.query.fileurl, { encoding: 'utf8', flag: 'r' }, (err, data1) => {
-//         if (err) {
-//           console.error('Error reading input file', err);
-//         } else {
-//           res.send(data1);
-//         }
-//       });
+       fs.readFile(__dirname + '/uploaded_files/' + req.query.fileurl, { encoding: 'utf8', flag: 'r' }, (err, data1) => {
+         if (err) {
+           console.error('Error reading input file', err);
+         } else {
+           res.send(data1);
+         }
+       });
 
-        console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
-        res.send(__dirname + '/uploaded_files/' + req.query.fileurl);
+//        console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
+//        res.send(__dirname + '/uploaded_files/' + req.query.fileurl);
 
 
       }
