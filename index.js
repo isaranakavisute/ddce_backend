@@ -1971,6 +1971,135 @@ app.post("/update_master/delete", async (req, res) => {
     res.end();
 });
 
+app.post("/cost/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from cost";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/cost/upload", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+     var oldpath = files.file[0].filepath;
+     var newpath =  'uploaded_files/myupload.xlsx';
+     fs.rename(oldpath, newpath, function (err) {
+       if (err)
+       {
+         res.writeHead(200, {'Content-Type': 'application/json'});
+         res.write
+         (
+          JSON.stringify
+           (
+            {
+             "status":true,
+             "upload_excel":
+              {
+               "result": "fail",
+               "oldpath": oldpath,
+               "newpath": newpath
+              }
+             }
+           )
+          );
+          res.end();
+       }
+       else
+       {
+          var wb = new Excel.Workbook();
+          wb.xlsx.readFile('uploaded_files/myupload.xlsx').then(function(){
+          wb.csv.writeFile('uploaded_files/myupload.csv' )
+          .then(async function() {
+          console.log("saved csv...done");
+          var line_cnt=0;
+          lineReader.eachLine('uploaded_files/myupload.csv', async function(line, last) {
+          line_cnt++;
+          if (line_cnt >= 2)
+          {
+           var arr = line.split(",");
+           for(var i=0;i<arr.length;i++) {
+            if (arr[i]=="" || arr[i].indexOf('sharedFormula')!=-1) arr[i] = "blank";
+            var token_number = i + 1;
+            console.log("token #"+ token_number + ") " + arr[i]);
+           }
+           console.log("---");
+           if (arr.length==5) arr[5]="";
+           sql="insert into cost(category,part_no,model_no,unit,manufacturer_suggested_retail_price,sub_price_list)";
+           sql += " values ('";
+           sql += arr[0];
+           sql += "','";
+           sql += arr[1];
+           sql += "','";
+           sql += arr[2];
+           sql += "','";
+           sql += arr[3];
+           sql += "','";
+           sql += arr[4];
+           sql += "','";
+           sql += arr[5];
+           sql += "')";
+           console.log(sql);
+           await db.query(sql);
+           }
+          if(last){
+          }
+          });
+          });
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.write
+          (
+           JSON.stringify
+           (
+            {
+             "status":true,
+             "upload_excel":
+              {
+               "result": "pass",
+               "oldpath": oldpath,
+               "newpath": newpath
+              }
+             }
+           )
+          );
+          res.end();
+         });
+        }
+     });
+     });
+});
+
+app.post("/cost/deleteall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "delete from cost";
+ console.log(sql);
+ await db.query(sql);
+ res.writeHead(200, {'Content-Type': 'application/json'});
+ res.write
+ (
+         JSON.stringify
+         (
+              {
+                 "status":true,
+                 "deleteall":
+                  {
+                    "table": "cost",
+                    "result": "pass"
+                  }
+              }
+         )
+ );
+ res.end();
+});
+
 
 
 
