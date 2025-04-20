@@ -2029,12 +2029,12 @@ app.post("/cost/upload", async (req, res) => {
             var token_number = i + 1;
             console.log("token #"+ token_number + ") " + arr[i]);
            }
-           console.log("---");
            if (arr.length==5)
            {
             arr[5]="";
             console.log("token #"+ 5 + ") " + arr[5]);
            }
+           console.log("---");
            sql="insert into cost(category,part_no,model_no,unit,manufacturer_suggested_retail_price,sub_price_list)";
            sql += " values ('";
            sql += arr[0];
