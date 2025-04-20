@@ -2872,7 +2872,7 @@ app.post("/quotation_product/delete", async (req, res) => {
                  "delete_record_from quotation_product":
                   {
                    "result": "pass",
-                   "id": req.body.quot_id
+                   "id": req.body.quotation_product_id
                   }
                  }
                )
@@ -2915,6 +2915,79 @@ app.post("/quotation_product/add", async (req, res) => {
               );
     res.end();
 });
+
+
+app.post("/quotation_file_record/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from quotation_file_record";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/quotation_file_record/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from quotation_file_record where ";
+    sql += "quot_file_id=";
+    sql += req.body.quot_file_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from quotation_file_record":
+                  {
+                   "result": "pass",
+                   "id": req.body.quot_file_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/quotation_file_record/upload", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+     var oldpath = files.file[0].filepath;
+     var newpath = 'uploaded_files/' + files.file[0].originalFilename;
+     fs.rename(oldpath, newpath, function (err) {
+       if (err)
+       {
+         res.writeHead(200, {'Content-Type': 'application/json'});
+         res.write
+         (
+          JSON.stringify
+           (
+            {
+             "status":true,
+             "upload_excel":
+              {
+               "result": "fail",
+               "oldpath": oldpath,
+               "newpath": newpath
+              }
+             }
+           )
+          );
+          res.end();
+       }
+      });
+      });
+     });
 
 
 
