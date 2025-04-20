@@ -2396,7 +2396,33 @@ app.post("/exchange_rate/update", async (req, res) => {
 
 
 
+app.post("/exchange_rate/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
 
+    sql = "delete from exchange_rate where ";
+    sql += "rate_id=";
+    sql += req.body.rate_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from exchange_rate":
+                  {
+                   "result": "pass",
+                   "id": req.body.rate_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
 
 
 
