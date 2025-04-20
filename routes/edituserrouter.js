@@ -17,10 +17,10 @@ req.body.access
 const db = require('../db');
 const config = require('../config');
 const helper = require('../helper');
-var sql = "update user set usr='"+req.body.usr+"',pwd='"+req.body.pwd+"',access='"+req.body.access+"' where usr='"+req.body.usr+"'";
+var sql = "update user set email='"+req.body.usr+"',password='"+req.body.pwd+"',access_type='"+req.body.access+"',name_surname='"+req.body.name+"',company_name='"+req.body.company+"' where user_id="+req.body.id;
 console.log(sql);
 await db.query(sql);
-sql = "select * from user where usr='" + req.body.usr + "' and pwd='" + req.body.pwd + "' and access='" + req.body.access + "'" ;
+sql = "select * from user where email='" + req.body.usr + "' and password='" + req.body.pwd + "' and access_type='" + req.body.access + "'" ;
 console.log(sql);
 const rows = await db.query(sql);
 console.log(rows);
