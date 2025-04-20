@@ -3013,6 +3013,38 @@ app.post("/quotation_file_record/upload", async (req, res) => {
       });
      });
 
+app.post("/quotation_file_record/download", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "select * from quotation_file_record where ";
+    sql += "quot_file_id=";
+    sql += req.body.quot_file_id;
+    console.log(sql);
+    //await db.query(sql);
+    var results = await db.query(sql);
+    console.log(results)
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "show download link":
+                  {
+                   "document_name": results[0].quot_name,
+                   "document_path": results[0].quot_path,
+                   "document_download_link": "http://deploy-aws.com:3006/downloadfiletocomputer?fileurl="+results[0].quot_name
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
 
 
 app.use("/webcrawler", webCrawlerRouter);
