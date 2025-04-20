@@ -2562,7 +2562,8 @@ app.get("/downloadfiletocomputer", (req, res) => {
     wb.xlsx.readFile(__dirname + '/uploaded_files/' + req.query.fileurl).then(function(){
       wb.xlsx.write(res).then(() => {
 
-        res.json({ "File": "downloaded" });
+        //res.json({ "File": "downloaded" });
+        res.end();
 
 
       }
