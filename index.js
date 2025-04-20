@@ -2557,9 +2557,12 @@ app.get("/downloadfiletocomputer", (req, res) => {
 
        res.setHeader("Content-Type", "text/pdf");
        res.setHeader("Content-Disposition", "attachment; filename=" + "download.pdf");
-       const buff =  fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl);
-       fs.writeFileSync(res, buff);
-       res.end();
+       //const buff =  fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl);
+       //fs.writeFileSync(res, buff);
+       //res.end();
+       fs.readfile(__dirname + '/uploaded_files/' + req.query.fileurl).then(file => {
+             res.send(file);
+          });
 
       }
     else {
