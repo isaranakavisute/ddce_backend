@@ -2529,8 +2529,7 @@ app.get("/exchange_rate_history/downloadfiletocomputer", (req, res) => {
     var filePath = "uploaded_files/"; // Or format the path using the `id` rest param
     var fileName = req.query.fileurl; // The default name the browser will use
     res.download(filePath, fileName);
-
-})
+});
 
 app.use("/webcrawler", webCrawlerRouter);
 app.use("/login", loginRouter);
