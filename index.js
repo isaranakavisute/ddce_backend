@@ -2565,13 +2565,15 @@ app.get("/downloadfiletocomputer", (req, res) => {
 //             res.send(file);
 //          });
 
-       fs.readFile(__dirname + '/uploaded_files/' + req.query.fileurl, { encoding: 'utf8', flag: 'r' }, (err, data1) => {
-         if (err) {
-           console.error('Error reading input file', err);
-         } else {
-           res.send(data1);
-         }
-       });
+//       fs.readFile(__dirname + '/uploaded_files/' + req.query.fileurl, { encoding: 'utf8', flag: 'r' }, (err, data1) => {
+//         if (err) {
+//           console.error('Error reading input file', err);
+//         } else {
+//           res.send(data1);
+//         }
+//       });
+
+        res.send(__dirname + '/uploaded_files/' + req.query.fileurl);
 
 
       }
