@@ -17,7 +17,7 @@ req.body.access
 const db = require('../db');
 const config = require('../config');
 const helper = require('../helper');
-var sql = "insert into user(email,password,access_type) values ('" + req.body.usr + "','" + req.body.pwd + "','" + req.body.access + "')";
+var sql = "insert into user(email,password,access_type,name_surname,company_name) values ('" + req.body.usr + "','" + req.body.pwd + "','" + req.body.access + "','" + req.body.name + "','" + req.body.company + "')";
 console.log(sql);
 await db.query(sql);
 sql = "select * from user where email='" + req.body.usr + "' and password='" + req.body.pwd + "' and access_type='" + req.body.access + "'" ;
