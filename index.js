@@ -1665,6 +1665,78 @@ app.post("/distributor/delete", async (req, res) => {
     res.end();
 });
 
+app.post("/cost_history/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from cost_file_history";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/cost_history/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into cost_file_history";
+    sql += "(cost_file_name,";
+    sql += "im_path)";
+    sql += " values (";
+    sql += req.body.cost_file_name;
+    sql += ",'";
+    sql += req.body.im_path;
+    sql += "')";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_cost_history":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/cost_history/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from cost_file_history where ";
+    sql += "im_cost_id=";
+    sql += req.body.im_cost_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from cost_history":
+                  {
+                   "result": "pass",
+                   "id": req.body.mc_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
 
 
 
