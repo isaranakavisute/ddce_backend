@@ -2538,9 +2538,17 @@ app.get("/downloadfiletocomputer", (req, res) => {
 
     console.log(req.path);
 
-    res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
-            console.log("Error : ", err)
-        });
+    if (req.path !== '/') {
+          res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
+                      console.log("Error : ", err)
+                  });
+       } else {
+           next();
+       }
+
+//    res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
+//            console.log("Error : ", err)
+//        });
 
     res.json({ "File": "downloaded" });
 
