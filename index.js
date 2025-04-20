@@ -2521,7 +2521,7 @@ app.post("/exchange_rate_history/download", async (req, res) => {
 //downloadfiletocomputer
 //fileurl=http://deploy-aws.com:3006/uploaded_files/exchange_rate_template_version_1.xlsx
 app.get("/downloadfiletocomputer", (req, res) => {
-    console.log(req.query.fileurl);
+    //console.log(req.query.fileurl);
     //const file = ${__dirname}+"/uploaded_files/"+req.query.fileurl`;
     //console.log(file);
     //res.download(file); // Set disposition and send it.
@@ -2534,25 +2534,40 @@ app.get("/downloadfiletocomputer", (req, res) => {
 //            console.log("Error : ", error)
 //        });
 
-    console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
+    //console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
 
-    console.log(req.path);
+    //console.log(req.path);
 
-    if (req.path !== '/') {
-          res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
-                      console.log("Error : ", err)
-                  });
-       } else {
-           next();
-       }
+//    if (req.path !== '/') {
+//          res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
+//                      console.log("Error : ", err)
+//                  });
+//       } else {
+//           next();
+//       }
 
 //    res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
 //            console.log("Error : ", err)
 //        });
 
-    res.json({ "File": "downloaded" });
+    //res.json({ "File": "downloaded" });
 
 
+    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); res.setHeader("Content-Disposition", "attachment; filename=" + "download.xlsx");
+
+    // Write the workbook to the response object
+    //workbook.xlsx.write(res).then(() => res.end());
+
+    var wb = new Excel.Workbook();
+    wb.xlsx.readFile(__dirname + '/uploaded_files/' + req.query.fileurl).then(function(){
+      wb.xlsx.write(res).then(() => {
+
+        res.json({ "File": "downloaded" });
+
+
+      }
+      );
+    });
 });
 
 app.use("/webcrawler", webCrawlerRouter);
