@@ -1684,9 +1684,9 @@ app.post("/cost_history/add", async (req, res) => {
     sql = "insert into cost_file_history";
     sql += "(cost_file_name,";
     sql += "im_path)";
-    sql += " values (";
+    sql += " values (';
     sql += req.body.cost_file_name;
-    sql += ",'";
+    sql += "','";
     sql += req.body.im_path;
     sql += "')";
     console.log(sql);
