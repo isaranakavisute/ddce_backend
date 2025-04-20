@@ -2560,7 +2560,7 @@ app.get("/downloadfiletocomputer", (req, res) => {
        //const buff =  fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl);
        //fs.writeFileSync(res, buff);
        //res.end();
-       fs.readfile(__dirname + '/uploaded_files/' + req.query.fileurl).then(file => {
+       fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl).then(file => {
              res.send(file);
           });
 
