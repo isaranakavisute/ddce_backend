@@ -1809,6 +1809,168 @@ app.post("/supplier/delete", async (req, res) => {
     res.end();
 });
 
+app.post("/update_master/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from updating_master_price_list";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/update_master/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into updating_master_price_list";
+    sql += "(category,";
+    sql += "part_no,";
+    sql += "previous_model_no,";
+    sql += "new_model_no,";
+    sql += "unit,";
+    sql += "manufacturer_suggested_retail_price,";
+    sql += "new_manufacturer_suggested_retail_price,";
+    sql += "conversion_to_ft,";
+    sql += "diff_for_cost,";
+    sql += "op_price,";
+    sql += "po_price_jpy_usd,";
+    sql += "po_price_currency,";
+    sql += "remark,";
+    sql += "thb_cost,";
+    sql += "gp,";
+    sql += "pricelist_name,";
+    sql += "multiplier,";
+    sql += "make_same_price_as_standard_price,";
+    sql += "new_make_same_price_as_standard_price,";
+    sql += "standard_price,";
+    sql += "diff,";
+    sql += "dist_pl_mull,";
+    sql += "dist_ex_rate,";
+    sql += "unit_price,";
+    sql += "new_unit_price,";
+    sql += "diff_unit_price,";
+    sql += "status,";
+    sql += "supplier_name,";
+    sql += "stock_reference,";
+    sql += "cutting_assembly,";
+    sql += "detail,Id)";
+    sql += " values ('";
+    sql += req.body.category;
+    sql += "','";
+    sql += req.body.part_no;
+    sql += "','";
+    sql += req.body.previous_model_no;
+    sql += "','";
+    sql += req.body.new_model_no;
+    sql += "','";
+    sql += req.body.unit;
+    sql += "','";
+    sql += req.body.manufacturer_suggested_retail_price;
+    sql += "','";
+    sql += req.body.new_manufacturer_suggested_retail_price;
+    sql += "','";
+    sql += req.body.conversion_to_ft;
+    sql += "','";
+    sql += req.body.diff_for_cost;
+    sql += "','";
+    sql += req.body.op_price;
+    sql += "','";
+    sql += req.body.po_price_jpy_usd;
+    sql += "','";
+    sql += req.body.po_price_currency;
+    sql += "','";
+    sql += req.body.remark;
+    sql += "','";
+    sql += req.body.thb_cost;
+    sql += "','";
+    sql += req.body.gp;
+    sql += "','";
+    sql += req.body.pricelist_name;
+    sql += "','";
+    sql += req.body.multiplier;
+    sql += "','";
+    sql += req.body.make_same_price_as_standard_price;
+    sql += "','";
+    sql += req.body.new_make_same_price_as_standard_price;
+    sql += "','";
+    sql += req.body.standard_price;
+    sql += "','";
+    sql += req.body.diff;
+    sql += "','";
+    sql += req.body.dist_pl_mull;
+    sql += "','";
+    sql += req.body.dist_ex_rate;
+    sql += "','";
+    sql += req.body.unit_price;
+    sql += "','";
+    sql += req.body.new_unit_price;
+    sql += "','";
+    sql += req.body.diff_unit_price;
+    sql += "','";
+    sql += req.body.status;
+    sql += "','";
+    sql += req.body.supplier_name;
+    sql += "','";
+    sql += req.body.stock_reference;
+    sql += "','";
+    sql += req.body.cutting_assembly;
+    sql += "','";
+    sql += req.body.detail;
+    sql += "',";
+    sql += req.body.Id
+    sql += ")";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_updating_master_price_list":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+
+
+});
+
+app.post("/update_master/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from updating_master_price_list where ";
+    sql += "Id=";
+    sql += req.body.Id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from updating_master_price_list":
+                  {
+                   "result": "pass",
+                   "id": req.body.mc_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
 
 
 
