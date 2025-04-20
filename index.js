@@ -2555,8 +2555,8 @@ app.get("/downloadfiletocomputer", (req, res) => {
     if (req.query.fileurl.indexOf('pdf') >= 0){
        //pdf
 
-       res.setHeader("Content-Type", "text/pdf");
-       res.setHeader("Content-Disposition", "attachment; filename=" + "download.pdf");
+//       res.setHeader("Content-Type", "text/pdf");
+//       res.setHeader("Content-Disposition", "attachment; filename=" + "download.pdf");
 
        //const buff =  fs.readFileSync(__dirname + '/uploaded_files/' + req.query.fileurl);
        //fs.writeFileSync(res, buff);
