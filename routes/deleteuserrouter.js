@@ -17,10 +17,11 @@ req.body.access
 const db = require('../db');
 const config = require('../config');
 const helper = require('../helper');
-var sql = "delete from user where usr='"+req.body.usr+"' and pwd='"+req.body.pwd+"' and access='"+req.body.access+"'";
+//var sql = "delete from user where usr='"+req.body.usr+"' and pwd='"+req.body.pwd+"' and access='"+req.body.access+"'";
+var sql = "delete from user where user_id="+req.body.id;
 console.log(sql);
 await db.query(sql);
-sql = "select * from user where usr='" + req.body.usr + "' and pwd='" + req.body.pwd + "' and access='" + req.body.access + "'" ;
+sql = "select * from user where user_id="+req.body.id;
 console.log(sql);
 const rows = await db.query(sql);
 console.log(rows);
@@ -37,9 +38,6 @@ if (rows.length==0)
                 "status":true, 
                 "deletion":
                  {
-                  "usr": req.body.usr,
-                  "pwd": req.body.pwd,
-                  "access": req.body.access,
                   "result": "pass"
                  }
 
@@ -60,9 +58,6 @@ else
                 "status":true, 
                 "deletion":
                  {
-                  "usr": req.body.usr,
-                  "pwd": req.body.pwd,
-                  "access": req.body.access,
                   "result": "fail"
                  }
 
