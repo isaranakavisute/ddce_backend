@@ -2587,12 +2587,6 @@ app.post("/news_info/update", async (req, res) => {
     const config = require('./config');
     const helper = require('./helper');
 
-    title
-    content
-    news_date
-    showing_order
-    short_content
-
     sql = "update news_info set ";
 
     sql += "title='";
@@ -2657,6 +2651,264 @@ app.post("/news_info/delete", async (req, res) => {
                   {
                    "result": "pass",
                    "id": req.body.news_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
+app.post("/quotation_list/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from quotation_list";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/quotation_list/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "update quotation_list set ";
+
+    sql += "quot_no='";
+    sql += req.body.quot_no;
+
+    sql += "',";
+    sql += "user_id=";
+    sql += req.body.user_id;
+
+    sql += ",";
+    sql += "update_time='";
+    sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
+    //sql += req.body.usd_qr;
+
+    sql += "',";
+    sql += "quot_stat='";
+    sql += req.body.quot_stat;
+
+    sql += ",";
+    sql += "quot_ver=";
+    sql += req.body.quot_ver;
+
+    sql += " where quot_id=";
+    sql += req.body.quot_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_quotation_list":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/quotation_list/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from quotation_list where ";
+    sql += "quot_id=";
+    sql += req.body.quot_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from quotation_list":
+                  {
+                   "result": "pass",
+                   "id": req.body.quot_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/quotation_list/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into quotation_list(quot_no,user_id,update_time,quot_stat,quot_ver)";
+    sql += " values ('"
+    sql += req.body.quot_no;
+    sql += "',";
+    sql += req.body.user_id;
+    sql += ",'";
+    sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
+    sql += "','";
+    sql += req.body.quot_stat;
+    sql += "',";
+    sql += req.body.quot_ver;
+    sql += ")";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_quotation_list":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/quotation_product/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from quotation_product";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/quotation_product/getquotationbyid", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from quotation_product where quotation_product_id=";
+ sql += req.body.quotation_product_id
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/quotation_product/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "update quotation_product set ";
+
+    sql += "quot_id=";
+    sql += req.body.quot_id;
+
+    sql += ",";
+    sql += "Id=";
+    sql += req.body.Id;
+
+    sql += ",";
+    sql += "quantity=";
+    sql += req.body.quantity;
+
+    sql += ",";
+    sql += "unit_price=";
+    sql += req.body.unit_price;
+
+    sql += ",";
+    sql += "total_price=";
+    sql += req.body.total_price;
+
+    sql += " where quotation_product_id=";
+    sql += req.body.quotation_product_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_quotation_product":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/quotation_product/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from quotation_product where ";
+    sql += "quotation_product_id=";
+    sql += req.body.quotation_product_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from quotation_product":
+                  {
+                   "result": "pass",
+                   "id": req.body.quot_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/quotation_product/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into quotation_product(quot_id,Id,quantity,unit_price,total_price)";
+    sql += " values ("
+    sql += req.body.quot_id;
+    sql += ",";
+    sql += req.body.Id;
+    sql += ",";
+    sql += req.body.quantity;
+    sql += ",";
+    sql += req.body.unit_price;
+    sql += "',";
+    sql += req.body.total_price;
+    sql += ")";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_quotation_product":
+                  {
+                   "result": "pass"
                   }
                  }
                )
