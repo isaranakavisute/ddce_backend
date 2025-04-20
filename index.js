@@ -2526,11 +2526,17 @@ app.get("/downloadfiletocomputer", (req, res) => {
     //console.log(file);
     //res.download(file); // Set disposition and send it.
 
-    var filePath = "uploaded_files/"; // Or format the path using the `id` rest param
-    var fileName = req.query.fileurl; // The default name the browser will use
+//    var filePath = "uploaded_files/"; // Or format the path using the `id` rest param
+//    var fileName = req.query.fileurl; // The default name the browser will use
     //res.download(filePath, fileName);
 
-    res.download(filePath, fileName, function (error) {
+//    res.download(filePath, fileName, function (error) {
+//            console.log("Error : ", error)
+//        });
+
+    console.log(__dirname + '/uploaded_files/' + req.query.fileurl);
+
+    res.download(__dirname + '/uploaded_files/' + req.query.fileurl, req.query.fileurl, function(err){
             console.log("Error : ", error)
         });
 
