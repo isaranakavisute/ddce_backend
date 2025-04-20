@@ -3065,6 +3065,7 @@ app.post("/quotation_file_record/download", async (req, res) => {
     sql += req.body.quot_file_id;
     console.log(sql);
     //await db.query(sql);
+    //"document_download_link": "http://deploy-aws.com:3006/downloadfiletocomputer?fileurl="+results[0].quot_name
     var results = await db.query(sql);
     console.log(results)
     res.writeHead(200, {'Content-Type': 'application/json'});
@@ -3077,8 +3078,7 @@ app.post("/quotation_file_record/download", async (req, res) => {
                  "show download link":
                   {
                    "document_name": results[0].quot_name,
-                   "document_path": results[0].quot_path,
-                   "document_download_link": "http://deploy-aws.com:3006/downloadfiletocomputer?fileurl="+results[0].quot_name
+                   "document_path": results[0].quot_path
                   }
                  }
                )
