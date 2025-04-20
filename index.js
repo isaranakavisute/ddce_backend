@@ -1557,6 +1557,124 @@ app.post("/company/delete", async (req, res) => {
     res.end();
 });
 
+app.post("/distributor/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from distributor_product_matching";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/distributor/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into distributor_product_matching";
+    sql += "(company_id,";
+    sql += "master_price_list,";
+    sql += "master_pricelist_showing_name)";
+    sql += " values ('";
+    sql += req.body.company_id;
+    sql += "','";
+    sql += req.body.master_price_list;
+    sql += "','";
+    sql += req.body.master_pricelist_showing_name;
+    sql += "')";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_distributor":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/distributor/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "update distributor_product_matching set ";
+    sql += "master_price_list='";
+    sql += req.body.master_price_list;
+    sql += "',";
+    sql += "master_pricelist_showing_name='";
+    sql += req.body.master_pricelist_showing_name;
+    sql += "',company_id='";
+    sql += req.body.company_id;
+    sql += "' where mc_id=";
+    sql += req.body.mc_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_distributor_product_matching":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/distributor/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from distributor_product_matching where ";
+    sql += "mc_id=";
+    sql += req.body.mc_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from distributor_product_matching":
+                  {
+                   "result": "pass",
+                   "id": req.body.mc_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
+
+
+
+
+
+
+
+
+
 app.use("/webcrawler", webCrawlerRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
