@@ -2522,6 +2522,9 @@ app.post("/exchange_rate_history/download", async (req, res) => {
 //fileurl=http://deploy-aws.com:3006/uploaded_files/exchange_rate_template_version_1.xlsx
 app.get("/exchange_rate_history/downloadfiletocomputer", (req, res) => {
     console.log(req.query.fileurl);
+    const file = ${__dirname}+"/uploaded_files/"+req.query.fileurl`;
+    console.log(file);
+    res.download(file); // Set disposition and send it.
 })
 
 app.use("/webcrawler", webCrawlerRouter);
