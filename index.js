@@ -2571,6 +2571,101 @@ app.get("/downloadfiletocomputer", (req, res) => {
     });
 });
 
+app.post("/news_info/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+ sql = "select * from news_info";
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+app.post("/news_info/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    title
+    content
+    news_date
+    showing_order
+    short_content
+
+    sql = "update news_info set ";
+
+    sql += "title='";
+    sql += req.body.title;
+
+    sql += "',";
+    sql += "content='";
+    sql += req.body.content;
+
+    sql += "',";
+    sql += "news_date='";
+    sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
+    //sql += req.body.usd_qr;
+
+    sql += "',";
+    sql += "showing_order=";
+    sql += req.body.showing_order;
+
+    sql += ",";
+    sql += "short_content='";
+    sql += req.body.short_content;
+
+    sql += "' where news_id=";
+    sql += req.body.news_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_news_info":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+app.post("/news_info/delete", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "delete from news_info where ";
+    sql += "news_id=";
+    sql += req.body.news_id;
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "delete_record_from news_info":
+                  {
+                   "result": "pass",
+                   "id": req.body.news_id
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
+
 app.use("/webcrawler", webCrawlerRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
