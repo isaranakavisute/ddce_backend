@@ -2965,7 +2965,7 @@ app.post("/quotation_product/add", async (req, res) => {
     sql += req.body.quantity;
     sql += ",";
     sql += req.body.unit_price;
-    sql += "',";
+    sql += ",";
     sql += req.body.total_price;
     sql += ")";
     console.log(sql);
