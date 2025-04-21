@@ -2755,7 +2755,7 @@ app.post("/quotation_list/update", async (req, res) => {
     sql += "quot_stat='";
     sql += req.body.quot_stat;
 
-    sql += ",";
+    sql += "',";
     sql += "quot_ver=";
     sql += req.body.quot_ver;
 
