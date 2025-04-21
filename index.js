@@ -2740,8 +2740,16 @@ app.post("/quotation_list/update", async (req, res) => {
 
     sql += ",";
     sql += "update_time='";
-    sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
+    //sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
     //sql += req.body.usd_qr;
+
+     let ts = Date.now();
+     let date_time = new Date(ts);
+     let date = date_time.getDate();
+     let month = date_time.getMonth() + 1;
+     let year = date_time.getFullYear();
+     //console.log(year + "-" + month + "-" + date);
+     sql += year + "-" + month + "-" + date;
 
     sql += "',";
     sql += "quot_stat='";
@@ -2811,7 +2819,16 @@ app.post("/quotation_list/add", async (req, res) => {
     sql += "',";
     sql += req.body.user_id;
     sql += ",'";
-    sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
+
+    //sql += new Date().toString().replace(/T/, ':').replace(/\.\w*/, '');
+    let ts = Date.now();
+    let date_time = new Date(ts);
+    let date = date_time.getDate();
+    let month = date_time.getMonth() + 1;
+    let year = date_time.getFullYear();
+    //console.log(year + "-" + month + "-" + date);
+    sql += year + "-" + month + "-" + date;
+
     sql += "','";
     sql += req.body.quot_stat;
     sql += "',";
