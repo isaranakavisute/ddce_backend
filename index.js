@@ -2382,7 +2382,28 @@ app.post("/exchange_rate/listall", async (req, res) => {
  sql = "SET time_zone = 'Asia/Bangkok'";
  console.log(sql);
  await db.query(sql);
- sql = "select * from exchange_rate";
+
+
+ sql = "select CAST(usd_br as char) as usd_br,";
+ sql += "cast(usd_cr as char) as usd_cr,";
+ sql += "cast(usd_pr as char) as usd_pr,";
+ sql += "cast(usd_qr as char) as usd_qr,";
+ sql += "cast(eur_br as char) as eur_br,";
+ sql += "cast(eur_cr as char) as eur_cr,";
+ sql += "cast(eur_qr as char) as eur_qr,";
+ sql += "cast(eur_pr as char) as eur_pr,";
+ sql += "cast(jpy_br as char) as jpy_br,";
+ sql += "cast(jpy_cr as char) as jpy_cr,";
+ sql += "cast(jpy_pr as char) as jpy_pr,";
+ sql += "cast(jpy_qr as char) as jpy_qr,";
+ sql += "rate_remark,";
+ sql += "rate_file_name,";
+ sql += "rate_path,";
+ sql += "rate_date,";
+ sql += "rate_id";
+ sql += " from exchange_rate";
+
+
  console.log(sql);
  var results = await db.query(sql);
  console.log(results);
