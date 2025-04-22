@@ -2379,6 +2379,9 @@ app.post("/exchange_rate/listall", async (req, res) => {
  const db = require('./db');
  const config = require('./config');
  const helper = require('./helper');
+ sql = "SET time_zone = 'Asia/Bangkok'";
+ console.log(sql);
+ await db.query(sql);
  sql = "select * from exchange_rate";
  console.log(sql);
  var results = await db.query(sql);
