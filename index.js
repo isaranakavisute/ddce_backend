@@ -2399,7 +2399,7 @@ app.post("/exchange_rate/listall", async (req, res) => {
  sql += "rate_remark,";
  sql += "rate_file_name,";
  sql += "rate_path,";
- sql += "rate_date,";
+ sql += "DATE_FORMAT(rate_date,GET_FORMAT(DATETIME,'USA') as rate_date,";
  sql += "rate_id";
  sql += " from exchange_rate";
 
