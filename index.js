@@ -2267,7 +2267,7 @@ app.post("/exchange_rate/upload", async (req, res) => {
        {
           var wb = new Excel.Workbook();
           wb.xlsx.readFile(newpath).then(async function(){
-            var workSheet =  wb.getWorksheet("Exchange rate ");
+            var workSheet =  wb.getWorksheet("exchange rate");
 
             var workRow = workSheet.getRow(2);
             var usd_br = workRow.getCell(2).value;
