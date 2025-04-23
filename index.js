@@ -345,159 +345,159 @@ app.post("/master_data/upload", async (req, res) => {
                           sql += " values ('";
                           value = row.getCell(1).formula;
 
-                          row.getCell(1).numFmt = '@';;
-                          row.getCell(2).numFmt = '@';
-                          row.getCell(3).numFmt = '@';
-                          row.getCell(4).numFmt = '@';
-                          row.getCell(5).numFmt = '@';
-                          row.getCell(6).numFmt = '@';
-                          row.getCell(7).numFmt = '@';
-                          row.getCell(8).numFmt = '@';
-                          row.getCell(9).numFmt = '@';
-                          row.getCell(10).numFmt = '@';
-                          row.getCell(11).numFmt = '@';
-                          row.getCell(12).numFmt = '@';
-                          row.getCell(13).numFmt = '@';
-                          row.getCell(14).numFmt = '@';
-                          row.getCell(15).numFmt = '@';
-                          row.getCell(16).numFmt = '@';
-                          row.getCell(17).numFmt = '@';
-                          row.getCell(18).numFmt = '@';
-                          row.getCell(19).numFmt = '@';
-                          row.getCell(20).numFmt = '@';
-                          row.getCell(21).numFmt = '@';
-                          row.getCell(22).numFmt = '@';
-                          row.getCell(23).numFmt = '@';
-                          row.getCell(24).numFmt = '@';
-                          row.getCell(25).numFmt = '@';
-                          row.getCell(26).numFmt = '@';
-                          row.getCell(27).numFmt = '@';
-                          row.getCell(28).numFmt = '@';
-                          row.getCell(29).numFmt = '@';
-                          row.getCell(30).numFmt = '@';
-                          row.getCell(31).numFmt = '@';
+//                          row.getCell(1).numFmt = '@';;
+//                          row.getCell(2).numFmt = '@';
+//                          row.getCell(3).numFmt = '@';
+//                          row.getCell(4).numFmt = '@';
+//                          row.getCell(5).numFmt = '@';
+//                          row.getCell(6).numFmt = '@';
+//                          row.getCell(7).numFmt = '@';
+//                          row.getCell(8).numFmt = '@';
+//                          row.getCell(9).numFmt = '@';
+//                          row.getCell(10).numFmt = '@';
+//                          row.getCell(11).numFmt = '@';
+//                          row.getCell(12).numFmt = '@';
+//                          row.getCell(13).numFmt = '@';
+//                          row.getCell(14).numFmt = '@';
+//                          row.getCell(15).numFmt = '@';
+//                          row.getCell(16).numFmt = '@';
+//                          row.getCell(17).numFmt = '@';
+//                          row.getCell(18).numFmt = '@';
+//                          row.getCell(19).numFmt = '@';
+//                          row.getCell(20).numFmt = '@';
+//                          row.getCell(21).numFmt = '@';
+//                          row.getCell(22).numFmt = '@';
+//                          row.getCell(23).numFmt = '@';
+//                          row.getCell(24).numFmt = '@';
+//                          row.getCell(25).numFmt = '@';
+//                          row.getCell(26).numFmt = '@';
+//                          row.getCell(27).numFmt = '@';
+//                          row.getCell(28).numFmt = '@';
+//                          row.getCell(29).numFmt = '@';
+//                          row.getCell(30).numFmt = '@';
+//                          row.getCell(31).numFmt = '@';
 
-                          sql += value ? (row.getCell(1).result != '') || row.getCell(1).result || row.getCell(1).result==0 ? row.getCell(1).text : ''  : row.getCell(1).value ? row.getCell(1).text : '';
+                          sql += value ? (row.getCell(1).result != '') || row.getCell(1).result || row.getCell(1).result==0 ? row.getCell(1).result : ''  : row.getCell(1).value ? row.getCell(1).value : '';
 
                           sql += "','";
                           value = row.getCell(2).formula;
-                          sql += value ? (row.getCell(2).result != '') || row.getCell(2).result || row.getCell(2).result==0  ? row.getCell(2).text : ''  : row.getCell(2).value ? row.getCell(2).text : '';
+                          sql += value ? (row.getCell(2).result != '') || row.getCell(2).result || row.getCell(2).result==0  ? row.getCell(2).result : ''  : row.getCell(2).value ? row.getCell(2).value : '';
 
                           sql += "','";
                           value = row.getCell(3).formula;
-                          sql += value ? (row.getCell(3).result != '') || row.getCell(3).result || row.getCell(3).result==0  ? row.getCell(3).text : ''  : row.getCell(3).value ? row.getCell(3).text : '';
+                          sql += value ? (row.getCell(3).result != '') || row.getCell(3).result || row.getCell(3).result==0  ? row.getCell(3).result : ''  : row.getCell(3).value ? row.getCell(3).value : '';
 
                           sql += "','";
                           value = row.getCell(4).formula;
-                          sql += value ? (row.getCell(4).result != '') || row.getCell(4).result || row.getCell(4).result==0  ? row.getCell(4).text : ''  : row.getCell(4).value ? row.getCell(4).text : '';
+                          sql += value ? (row.getCell(4).result != '') || row.getCell(4).result || row.getCell(4).result==0  ? row.getCell(4).result : ''  : row.getCell(4).value ? row.getCell(4).value : '';
 
                           sql += "','";
                           value = row.getCell(5).formula;
-                          sql += value ? (row.getCell(5).result != '') || row.getCell(5).result || row.getCell(5).result==0  ? row.getCell(5).text : ''  : row.getCell(5).value ? row.getCell(5).text : '';
+                          sql += value ? (row.getCell(5).result != '') || row.getCell(5).result || row.getCell(5).result==0  ? row.getCell(5).result : ''  : row.getCell(5).value ? row.getCell(5).value : '';
 
                           sql += "','";
                           value = row.getCell(6).formula;
-                          sql += value ? (row.getCell(6).result != '') || row.getCell(6).result || row.getCell(6).result==0  ? row.getCell(6).text : ''  : row.getCell(6).value ? row.getCell(6).text : '';
+                          sql += value ? (row.getCell(6).result != '') || row.getCell(6).result || row.getCell(6).result==0  ? row.getCell(6).result : ''  : row.getCell(6).value ? row.getCell(6).value : '';
 
                           sql += "','";
                           value = row.getCell(7).formula;
-                          sql += value ? (row.getCell(7).result != '')  || row.getCell(7).result || row.getCell(7).result==0 ? row.getCell(7).text : ''  : row.getCell(7).value ? row.getCell(7).text : '';
+                          sql += value ? (row.getCell(7).result != '')  || row.getCell(7).result || row.getCell(7).result==0 ? row.getCell(7).result : ''  : row.getCell(7).value ? row.getCell(7).value : '';
 
                           sql += "','";
                           value = row.getCell(8).formula;
-                          sql += value ? (row.getCell(8).result != '')  || row.getCell(8).result || row.getCell(8).result==0  ? row.getCell(8).text : ''  : row.getCell(8).value ? row.getCell(8).text : '';
+                          sql += value ? (row.getCell(8).result != '')  || row.getCell(8).result || row.getCell(8).result==0  ? row.getCell(8).result : ''  : row.getCell(8).value ? row.getCell(8).value : '';
 
                           sql += "','";
                           value = row.getCell(9).formula;
-                          sql += value ? (row.getCell(9).result != '')  || row.getCell(9).result || row.getCell(9).result==0  ? row.getCell(9).text : ''  : row.getCell(9).value ? row.getCell(9).text : '';
+                          sql += value ? (row.getCell(9).result != '')  || row.getCell(9).result || row.getCell(9).result==0  ? row.getCell(9).result : ''  : row.getCell(9).value ? row.getCell(9).value : '';
 
                           sql += "','";
                           value = row.getCell(10).formula;
-                          sql += value ? (row.getCell(10).result != '') || row.getCell(10).result || row.getCell(10).result==0 ? row.getCell(10).text : ''  : row.getCell(10).value ? row.getCell(10).text : '';
+                          sql += value ? (row.getCell(10).result != '') || row.getCell(10).result || row.getCell(10).result==0 ? row.getCell(10).result : ''  : row.getCell(10).value ? row.getCell(10).value : '';
 
                           sql += "','";
                           value = row.getCell(11).formula;
-                          sql += value ? (row.getCell(11).result != '') || row.getCell(11).result || row.getCell(11).result==0  ? row.getCell(11).text : ''  : row.getCell(11).value ? row.getCell(11).text : '';
+                          sql += value ? (row.getCell(11).result != '') || row.getCell(11).result || row.getCell(11).result==0  ? row.getCell(11).result : ''  : row.getCell(11).value ? row.getCell(11).value : '';
 
                           sql += "','";
                           value = row.getCell(12).formula;
-                          sql += value ? (row.getCell(12).result != '') || row.getCell(12).result || row.getCell(12).result==0  ? row.getCell(12).text : ''  : row.getCell(12).value ? row.getCell(12).text : '';
+                          sql += value ? (row.getCell(12).result != '') || row.getCell(12).result || row.getCell(12).result==0  ? row.getCell(12).result : ''  : row.getCell(12).value ? row.getCell(12).value : '';
 
                           sql += "','";
                           value = row.getCell(13).formula;
-                          sql += value ? (row.getCell(13).result != '') || row.getCell(13).result || row.getCell(13).result==0  ? row.getCell(13).text : ''  : row.getCell(13).value ? row.getCell(13).text : '';
+                          sql += value ? (row.getCell(13).result != '') || row.getCell(13).result || row.getCell(13).result==0  ? row.getCell(13).result : ''  : row.getCell(13).value ? row.getCell(13).value : '';
 
                           sql += "','";
                           value = row.getCell(14).formula;
-                          sql += value ? (row.getCell(14).result != '') || row.getCell(14).result || row.getCell(14).result==0  ? row.getCell(14).text : ''  : row.getCell(14).value ? row.getCell(14).text : '';
+                          sql += value ? (row.getCell(14).result != '') || row.getCell(14).result || row.getCell(14).result==0  ? row.getCell(14).result : ''  : row.getCell(14).value ? row.getCell(14).value : '';
 
                           sql += "','";
                           value = row.getCell(15).formula;
-                          sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? row.getCell(15).text : ''  : row.getCell(15).value ? row.getCell(15).text : '';
+                          sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? row.getCell(15).result : ''  : row.getCell(15).value ? row.getCell(15).value : '';
 
                           sql += "','";
                           value = row.getCell(16).formula;
-                          sql += value ? (row.getCell(16).result != '') || row.getCell(16).result || row.getCell(16).result==0  ? row.getCell(16).text : ''  : row.getCell(16).value ? row.getCell(16).text : '';
+                          sql += value ? (row.getCell(16).result != '') || row.getCell(16).result || row.getCell(16).result==0  ? row.getCell(16).result : ''  : row.getCell(16).value ? row.getCell(16).value : '';
 
                           sql += "','";
                           value = row.getCell(17).formula;
-                          sql += value ? (row.getCell(17).result != '') || row.getCell(17).result || row.getCell(17).result==0  ? row.getCell(17).text : ''  : row.getCell(17).value ? row.getCell(17).text : '';
+                          sql += value ? (row.getCell(17).result != '') || row.getCell(17).result || row.getCell(17).result==0  ? row.getCell(17).result : ''  : row.getCell(17).value ? row.getCell(17).value : '';
 
                           sql += "','";
                           value = row.getCell(18).formula;
-                          sql += value ? (row.getCell(18).result != '') || row.getCell(18).result || row.getCell(18).result==0  ? row.getCell(18).text : ''  : row.getCell(18).value ? row.getCell(18).text : '';
+                          sql += value ? (row.getCell(18).result != '') || row.getCell(18).result || row.getCell(18).result==0  ? row.getCell(18).result : ''  : row.getCell(18).value ? row.getCell(18).value : '';
 
                           sql += "','";
                           value = row.getCell(19).formula;
-                          sql += value ? (row.getCell(19).result != '') || row.getCell(19).result || row.getCell(19).result==0  ? row.getCell(19).text : ''  : row.getCell(19).value ? row.getCell(19).text : '';
+                          sql += value ? (row.getCell(19).result != '') || row.getCell(19).result || row.getCell(19).result==0  ? row.getCell(19).result : ''  : row.getCell(19).value ? row.getCell(19).value : '';
 
                           sql += "','";
                           value = row.getCell(20).formula;
-                          sql += value ? (row.getCell(20).result != '') || row.getCell(20).result || row.getCell20.result==0  ? row.getCell(20).text : ''  : row.getCell(20).value ? row.getCell(20).text : '';
+                          sql += value ? (row.getCell(20).result != '') || row.getCell(20).result || row.getCell20.result==0  ? row.getCell(20).result : ''  : row.getCell(20).value ? row.getCell(20).value : '';
 
                           sql += "','";
                           value = row.getCell(21).formula;
-                          sql += value ? (row.getCell(21).result != '') || row.getCell(21).result || row.getCell(21).result==0  ? row.getCell(21).text : ''  : row.getCell(21).value ? row.getCell(21).text : '';
+                          sql += value ? (row.getCell(21).result != '') || row.getCell(21).result || row.getCell(21).result==0  ? row.getCell(21).result : ''  : row.getCell(21).value ? row.getCell(21).value : '';
 
                           sql += "','";
                           value = row.getCell(22).formula;
-                          sql += value ? (row.getCell(22).result != '') || row.getCell(22).result || row.getCell(22).result==0  ? row.getCell(22).text : ''  : row.getCell(22).value ? row.getCell(22).text : '';
+                          sql += value ? (row.getCell(22).result != '') || row.getCell(22).result || row.getCell(22).result==0  ? row.getCell(22).result : ''  : row.getCell(22).value ? row.getCell(22).value : '';
 
                           sql += "','";
                           value = row.getCell(23).formula;
-                          sql += value ? (row.getCell(23).result != '') || row.getCell(23).result || row.getCell(23).result==0  ? row.getCell(23).text : ''  : row.getCell(23).value ? row.getCell(23).text : '';
+                          sql += value ? (row.getCell(23).result != '') || row.getCell(23).result || row.getCell(23).result==0  ? row.getCell(23).result : ''  : row.getCell(23).value ? row.getCell(23).value : '';
 
                           sql += "','";
                           value = row.getCell(24).formula;
-                          sql += value ? (row.getCell(24).result != '') || row.getCell(24).result || row.getCell(24).result==0  ? row.getCell(24).text : ''  : row.getCell(24).value ? row.getCell(24).text : '';
+                          sql += value ? (row.getCell(24).result != '') || row.getCell(24).result || row.getCell(24).result==0  ? row.getCell(24).result : ''  : row.getCell(24).value ? row.getCell(24).value : '';
 
                           sql += "','";
                           value = row.getCell(25).formula;
-                          sql += value ? (row.getCell(25).result != '') || row.getCell(25).result || row.getCell(25).result==0  ? row.getCell(25).text : ''  : row.getCell(25).value ? row.getCell(25).text : '';
+                          sql += value ? (row.getCell(25).result != '') || row.getCell(25).result || row.getCell(25).result==0  ? row.getCell(25).result : ''  : row.getCell(25).value ? row.getCell(25).value : '';
 
                           sql += "','";
                           value = row.getCell(26).formula;
-                          sql += value ? (row.getCell(26).result != '') || row.getCell(26).result || row.getCell(26).result==0  ? row.getCell(26).text : ''  : row.getCell(26).value ? row.getCell(26).text : '';
+                          sql += value ? (row.getCell(26).result != '') || row.getCell(26).result || row.getCell(26).result==0  ? row.getCell(26).result : ''  : row.getCell(26).value ? row.getCell(26).value : '';
 
                           sql += "','";
                           value = row.getCell(27).formula;
-                          sql += value ? (row.getCell(27).result != '') || row.getCell(27).result || row.getCell(27).result==0  ? row.getCell(27).text : ''  : row.getCell(27).value ? row.getCell(27).text : '';
+                          sql += value ? (row.getCell(27).result != '') || row.getCell(27).result || row.getCell(27).result==0  ? row.getCell(27).result : ''  : row.getCell(27).value ? row.getCell(27).value : '';
 
                           sql += "','";
                           value = row.getCell(28).formula;
-                          sql += value ? (row.getCell(28).result != '') || row.getCell(28).result || row.getCell(28).result==0  ? row.getCell(28).text : ''  : row.getCell(28).value ? row.getCell(28).text : '';
+                          sql += value ? (row.getCell(28).result != '') || row.getCell(28).result || row.getCell(28).result==0  ? row.getCell(28).result : ''  : row.getCell(28).value ? row.getCell(28).value : '';
 
                           sql += "','";
                           value = row.getCell(29).formula;
-                          sql += value ? (row.getCell(29).result != '') || row.getCell(29).result || row.getCell(29).result==0  ? row.getCell(29).text : ''  : row.getCell(29).value ? row.getCell(29).text : '';
+                          sql += value ? (row.getCell(29).result != '') || row.getCell(29).result || row.getCell(29).result==0  ? row.getCell(29).result : ''  : row.getCell(29).value ? row.getCell(29).value : '';
 
                           sql += "','";
                           value = row.getCell(30).formula;
-                          sql += value ? (row.getCell(30).result != '') || row.getCell(30).result || row.getCell(30).result==0  ? row.getCell(30).text : ''  : row.getCell(30).value ? row.getCell(30).text : '';
+                          sql += value ? (row.getCell(30).result != '') || row.getCell(30).result || row.getCell(30).result==0  ? row.getCell(30).result : ''  : row.getCell(30).value ? row.getCell(30).value : '';
 
                           sql += "','";
                           value = row.getCell(31).formula;
-                          sql += value ? (row.getCell(31).result != '') || row.getCell(31).result || row.getCell(31).result==0  ? row.getCell(31).text : ''  : row.getCell(31).value ? row.getCell(31).text : '';
+                          sql += value ? (row.getCell(31).result != '') || row.getCell(31).result || row.getCell(31).result==0  ? row.getCell(31).result : ''  : row.getCell(31).value ? row.getCell(31).value : '';
 
                           sql += "')";
                           console.log(sql);
