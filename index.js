@@ -433,7 +433,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(15).formula;
-                          sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? row.getCell(15).result : ''  : row.getCell(15).value ? row.getCell(15).value : '';
+                          sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? row.getCell(15).result.toFixed(5)  : ''  : row.getCell(15).value ? row.getCell(15).value : '';
 
                           sql += "','";
                           value = row.getCell(16).formula;
@@ -441,7 +441,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(17).formula;
-                          sql += value ? (row.getCell(17).result != '') || row.getCell(17).result || row.getCell(17).result==0  ? row.getCell(17).result : ''  : row.getCell(17).value ? row.getCell(17).value : '';
+                          sql += value ? (row.getCell(17).result != '') || row.getCell(17).result || row.getCell(17).result==0  ? row.getCell(17).result.toFixed(6) : ''  : row.getCell(17).value ? row.getCell(17).value : '';
 
                           sql += "','";
                           value = row.getCell(18).formula;
@@ -485,7 +485,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(28).formula;
-                          sql += value ? (row.getCell(28).result != '') || row.getCell(28).result || row.getCell(28).result==0  ? row.getCell(28).result : ''  : row.getCell(28).value ? row.getCell(28).value : '';
+                          sql += value ? (row.getCell(28).result != '') || row.getCell(28).result || row.getCell(28).result==0  ? row.getCell(28).result.toFixed(2) : ''  : row.getCell(28).value ? row.getCell(28).value : '';
 
                           sql += "','";
                           value = row.getCell(29).formula;
