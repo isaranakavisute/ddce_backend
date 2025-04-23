@@ -473,7 +473,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(25).formula;
-                          sql += value ? (row.getCell(25).result != '') || row.getCell(25).result || row.getCell(25).result==0  ? row.getCell(25).result : ''  : row.getCell(25).value ? row.getCell(25).value : '';
+                          sql += value ? (row.getCell(25).result != '') || row.getCell(25).result || row.getCell(25).result==0  ? row.getCell(25).result.toFixed(2) : ''  : row.getCell(25).value ? row.getCell(25).value : '';
 
                           sql += "','";
                           value = row.getCell(26).formula;
@@ -485,7 +485,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(28).formula;
-                          sql += value ? (row.getCell(28).result != '') || row.getCell(28).result || row.getCell(28).result==0  ? row.getCell(28).result.toFixed(2) : ''  : row.getCell(28).value ? row.getCell(28).value : '';
+                          sql += value ? (row.getCell(28).result != '') || row.getCell(28).result || row.getCell(28).result==0  ? row.getCell(28).result : ''  : row.getCell(28).value ? row.getCell(28).value : '';
 
                           sql += "','";
                           value = row.getCell(29).formula;
