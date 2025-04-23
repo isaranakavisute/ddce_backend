@@ -429,7 +429,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(14).formula;
-                          sql += value ? (row.getCell(14).result != '') || row.getCell(14).result || row.getCell(14).result==0  ? row.getCell(14).result.toFixed(5) : ''  : row.getCell(14).value ? row.getCell(14).value : '';
+                          sql += value ? (row.getCell(14).result != '') || row.getCell(14).result || row.getCell(14).result==0  ? row.getCell(14).result : ''  : row.getCell(14).value ? row.getCell(14).value : '';
 
                           sql += "','";
                           value = row.getCell(15).formula;
