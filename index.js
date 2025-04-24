@@ -3040,7 +3040,7 @@ app.post("/exchange_rate/upload", async (req, res) => {
 });
 
 
-
+/*
 app.post("/exchange_rate/listall", async (req, res) => {
  const db = require('./db');
  const config = require('./config');
@@ -3075,7 +3075,41 @@ app.post("/exchange_rate/listall", async (req, res) => {
  console.log(results);
  res.json(results);
 });
+*/
 
+app.post("/exchange_rate/listall", async (req, res) => {
+ const db = require('./db');
+ const config = require('./config');
+ const helper = require('./helper');
+
+ sql =  "select ";
+
+ sql += "CAST(usd_br as char) as usd_br,";
+ sql += "CAST(usd_cr as char) as usd_cr,";
+ sql += "CAST(usd_pr as char) as usd_pr,";
+ sql += "CAST(usd_qr as char) as usd_qr,";
+
+ sql += "CAST(eur_br as char) as eur_br,";
+ sql += "CAST(eur_cr as char) as eur_cr,";
+ sql += "CAST(eur_pr as char) as eur_pr,";
+ sql += "CAST(eur_qr as char) as eur_qr,";
+
+ sql += "CAST(jpy_br as char) as jpy_br,";
+ sql += "CAST(jpy_cr as char) as jpy_cr,";
+ sql += "CAST(jpy_pr as char) as jpy_pr,";
+ sql += "CAST(jpy_qr as char) as jpy_qr,";
+ sql += "rate_id,rate_remark,rate_file_name,rate_path,rate_date"
+
+ sql += " from exchange_rate";
+
+
+ console.log(sql);
+ var results = await db.query(sql);
+ console.log(results);
+ res.json(results);
+});
+
+/*
 app.post("/exchange_rate/add", async (req, res) => {
     const db = require('./db');
     const config = require('./config');
@@ -3132,7 +3166,136 @@ app.post("/exchange_rate/add", async (req, res) => {
               );
     res.end();
 });
+*/
 
+app.post("/exchange_rate/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into exchange_rate(usd_br,usd_cr,usd_pr,usd_qr,eur_br,eur_cr,eur_qr,eur_pr,jpy_br,jpy_cr,jpy_pr,jpy_qr,rate_remark,rate_file_name,rate_path)";
+    sql += " values ("
+
+    if (req.body.usd_br)
+     sql += req.body.usd_br;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.usd_cr)
+     sql += req.body.usd_cr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.usd_pr)
+     sql += req.body.usd_pr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.usd_qr)
+     sql += req.body.usd_qr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.eur_br)
+     sql += req.body.eur_br;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.eur_cr)
+     sql += req.body.eur_cr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.eur_qr)
+     sql += req.body.eur_qr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.eur_pr)
+     sql += req.body.eur_pr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.jpy_br)
+     sql += req.body.jpy_br;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.jpy_cr)
+     sql += req.body.jpy_cr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.jpy_pr)
+     sql += req.body.jpy_pr;
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.jpy_qr)
+     sql += req.body.jpy_qr;
+    else
+     sql += "null";
+
+    sql += ",'";
+
+    if (req.body.rate_remark)
+     sql += req.body.rate_remark;
+
+    sql += "','";
+
+    if (req.body.rate_file_name)
+     sql += req.body.rate_file_name
+
+    sql += "','";
+
+    if (req.body.rate_path)
+     sql += req.body.rate_path
+
+    sql += "'";
+
+    sql += ")";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_exchange_rate":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+/*
 app.post("/exchange_rate/update", async (req, res) => {
     const db = require('./db');
     const config = require('./config');
@@ -3223,6 +3386,147 @@ app.post("/exchange_rate/update", async (req, res) => {
               );
     res.end();
 });
+*/
+
+app.post("/exchange_rate/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "update exchange_rate set ";
+
+    if (req.body.usd_br)
+     {
+      sql += ",";
+      sql += "usd_br=";
+      sql += req.body.usd_br;
+     }
+
+    if (req.body.usd_cr)
+    {
+     sql += ",";
+     sql += "usd_cr=";
+     sql += req.body.usd_cr;
+    }
+
+    if (req.body.usd_qr)
+    {
+     sql += ",";
+     sql += "usd_qr=";
+     sql += req.body.usd_qr;
+    }
+
+    if (req.body.usd_pr)
+    {
+     sql += ",";
+     sql += "usd_pr=";
+     sql += req.body.usd_pr;
+    }
+
+    if (req.body.eur_br)
+    {
+     sql += ",";
+     sql += "eur_br=";
+     sql += req.body.eur_br;
+    }
+
+    if (req.body.eur_cr)
+    {
+     sql += ",";
+     sql += "eur_cr=";
+     sql += req.body.eur_cr;
+    }
+
+    if (req.body.eur_cr)
+    {
+     sql += ",";
+     sql += "eur_qr=";
+     sql += req.body.eur_cr;
+    }
+
+    if (req.body.eur_pr)
+    {
+     sql += ",";
+     sql += "eur_pr=";
+     sql += req.body.eur_pr;
+    }
+
+    if (req.body.jpy_br)
+    {
+     sql += ",";
+     sql += "jpy_br=";
+     sql += req.body.jpy_br;
+    }
+
+    if (req.body.jpy_cr)
+    {
+     sql += ",";
+     sql += "jpy_cr=";
+     sql += req.body.jpy_cr;
+    }
+
+    if (req.body.jpy_qr)
+    {
+     sql += ",";
+     sql += "jpy_qr=";
+     sql += req.body.jpy_qr;
+    }
+
+    if (req.body.jpy_pr)
+    {
+     sql += ",";
+     sql += "jpy_pr=";
+     sql += req.body.jpy_pr;
+    }
+
+    if (req.body.rate_remark)
+     {
+      sql += ",";
+      sql += "rate_remark='";
+      sql += req.body.rate_remark;
+      sql += "'";
+     }
+
+    if (req.body.rate_file_name)
+     {
+      sql += ",";
+      sql += "rate_file_name='";
+      sql += req.body.rate_file_name;
+      sql += "'";
+     }
+
+    if (req.body.rate_path)
+     {
+      sql += ",";
+      sql += "rate_path='";
+      sql += req.body.rate_path;
+      sql += "'";
+     }
+
+    sql += " where rate_id=";
+    sql += req.body.rate_id;
+
+    sql = sql.replace("update exchange_rate set ,", "update exchange_rate set ");
+    console.log(sql);
+
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_exchange_rate":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
 
 app.post("/exchange_rate/delete", async (req, res) => {
     const db = require('./db');
