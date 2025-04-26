@@ -3,10 +3,12 @@ const config = require('./config');
 
 var connection = null;
 
-async function start()
-{
- connection = await mysql.createPool(config.db);
-}
+//async function start()
+//{
+// connection = await mysql.createPool(config.db);
+//}
+
+const connection = mysql.createPool(config.db);
 
 async function query(sql, params) {
   //const connection = await mysql.createPool(config.db);
