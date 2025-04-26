@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 const config = require('./config');
 
-var connection = null;
+//var connection = null;
 
 //async function start()
 //{
