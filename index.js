@@ -548,6 +548,7 @@ app.post("/master_data/upload", async (req, res) => {
 
 app.post("/master_data/upload", async (req, res) => {
     const db = require('./db');
+    db.start();
     const config = require('./config');
     const helper = require('./helper');
     var form = new formidable.IncomingForm();
