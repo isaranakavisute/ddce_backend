@@ -585,7 +585,7 @@ app.post("/master_data/upload", async (req, res) => {
                     const numberOfRows = worksheet.rowCount - 4;
                     const rows = worksheet.getRows(rowStartIndex, numberOfRows) ?? [];
                     row_cnt=0;
-                    rows.map((row) => {
+                    rows.map(async (row) => {
 
                           row_cnt++;
                           console.log("row="+row_cnt);
@@ -939,7 +939,7 @@ app.post("/master_data/upload", async (req, res) => {
                           sql += "')";
                           console.log(sql);
                           console.log("---");
-                          db.query(sql);
+                          await db.query(sql);
                        });
         }
      });
