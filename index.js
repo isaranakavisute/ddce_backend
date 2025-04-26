@@ -585,6 +585,16 @@ app.post("/master_data/upload", async (req, res) => {
                     const numberOfRows = worksheet.rowCount - 4;
                     const rows = worksheet.getRows(rowStartIndex, numberOfRows) ?? [];
                     row_cnt=0;
+
+                    //const newList = await Promise.all(
+                    //await Promise.all(
+
+                    await Promise.all(
+                     //rows.map(async (row) => {})
+                    //);
+
+
+
                     rows.map(async (row) => {
 
                           row_cnt++;
@@ -940,7 +950,20 @@ app.post("/master_data/upload", async (req, res) => {
                           console.log(sql);
                           console.log("---");
                           await db.query(sql);
-                       });
+                       })
+
+
+
+
+
+                     );
+
+
+
+
+
+
+
         }
      });
                     res.writeHead(200, {'Content-Type': 'application/json'});
