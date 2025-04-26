@@ -961,7 +961,7 @@ app.post("/master_data/upload", async (req, res) => {
                     );
                     res.end();
      });
-     db.end();
+     //db.end();
 });
 
 
