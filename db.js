@@ -5,7 +5,7 @@ async function query(sql, params) {
   //const connection = await mysql.createConnection(config.db);
   const connection = await mysql.createPool(config.db);
   const [results, ] = await connection.execute(sql, params);
-  connection.end();
+  await connection.end();
   return results;
 }
 
