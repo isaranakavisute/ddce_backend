@@ -669,8 +669,8 @@ app.post("/master_data/upload", async (req, res) => {
      //var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
      var newpath = 'uploaded_files/' + onlyfilename  + '_' + timestamp + '.' + onlyfileext;
 
-     sql = "SET GLOBAL time_zone = 'Asia/Bangkok'";
-     db.query(sql);
+     //sql = "SET GLOBAL time_zone = 'Asia/Bangkok'";
+     //db.query(sql);
 
      const axios_post_data = {
        master_file_name: onlyfilename  + '_' + timestamp + '.' + onlyfileext,
