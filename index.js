@@ -561,9 +561,9 @@ app.post("/master_data/upload", async (req, res) => {
      let date = date_time.getDate();
      let month = date_time.getMonth() + 1;
      let year = date_time.getFullYear();
-     let hour = date_time.getHour();
-     let minute = date_time.getMinute();
-     let second = date_time.getSecond();
+     let hour = date_time.getHours();
+     let minute = date_time.getMinutes();
+     let second = date_time.getSeconds();
      let timestamp = year + "_" + month + "_" + date + "_" + hour + "_" + minute + "_" + second;
      var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
      fs.rename(oldpath, newpath, async function (err) {
