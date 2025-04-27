@@ -959,9 +959,14 @@ app.post("/master_data/upload", async (req, res) => {
                           //await db.query(sql);
                        })
 
-
-
-
+                       line_cnt = 0;
+                       lineReader.eachLine('uploaded_files/temp.txt', async function(line, last) {
+                         line_cnt++;
+                         sql = line.replace("\r\n", "");
+                         console.log("count sql#"+line_cnt+"->execute sql:"+sql)
+                         //sql = line.replace("\r\n", "");
+                         await db.query(sql);
+                       });
 
                      //);
 
