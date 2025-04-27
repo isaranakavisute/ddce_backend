@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require('body-parser')
 const app = express();
 const port = 3006;
+const axios = require('axios');
 
 //const port = 3007;
 
@@ -662,6 +663,18 @@ app.post("/master_data/upload", async (req, res) => {
      let onlyfileext = filewithext.split(".")[1];
      //var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
      var newpath = 'uploaded_files/' + onlyfilename  + '_' + timestamp + '.' + onlyfileext;
+
+     const axios_post_data = {
+       master_file_name: onlyfilename  + '_' + timestamp + '.' + onlyfileext,
+       file_path: newpath
+     };
+     axios.post('/master_history/add', axios_post_data, {
+       headers: {
+         'Content-Type': 'application/json',
+         'User-Agent': 'Node.js'
+       }
+     }).then((response) => {});
+
      fs.rename(oldpath, newpath, async function (err) {
        if (err)
        {
