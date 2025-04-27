@@ -146,7 +146,7 @@ app.post("/master_history/add", async (req, res) => {
     const config = require('./config');
     const helper = require('./helper');
 
-    sql = "insert into exchange_rate(master_file_name,file_path)";
+    sql = "insert into master_pricelist_history(master_file_name,file_path)";
     sql += " values ("
 
     if (req.body.master_file_name)
