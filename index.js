@@ -93,6 +93,96 @@ app.post("/master_history/delete", async (req, res) => {
     res.end();
 });
 
+
+app.post("/master_history/update", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "update master_pricelist_history set ";
+
+    if (req.master_file_name)
+     {
+      sql += ",";
+      sql += "master_file_name=";
+      sql += req.body.master_file_name;
+     }
+
+    if (req.body.file_path)
+    {
+     sql += ",";
+     sql += "file_path=";
+     sql += req.body.file_path;
+    }
+
+
+    sql += " where master_file_id=";
+    sql += req.body.master_file_id;
+
+    sql = sql.replace("update master_pricelist_history set ,", "update master_pricelist_history set ");
+    console.log(sql);
+
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "update_record_to_master_history":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
+app.post("/master_history/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into exchange_rate(master_file_name,file_path)";
+    sql += " values ("
+
+    if (req.body.master_file_name)
+     sql += "'" + req.body.master_file_name + "'";
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.file_path)
+     sql += "'" + req.body.file_path + "'";
+    else
+     sql += "null";
+
+
+
+    sql += ")";
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "add_record_to_master_history":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
 app.post("/master_data/listall", async (req, res) => {
  const db = require('./db');
  const config = require('./config');
