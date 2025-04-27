@@ -660,6 +660,8 @@ app.post("/master_data/upload", async (req, res) => {
                           sql += "','";
                           value = row.getCell(14).formula;
 
+                                                    if (value)
+                                                    {
                                                     str = row.getCell(14).result.toFixed(6).toString();
                                                     mystr = new Array();
                                                     console.log("output string="+str);
@@ -698,6 +700,7 @@ app.post("/master_data/upload", async (req, res) => {
                                                      }
                                                     mystr = mystr.join('');
                                                     console.log("output string="+mystr.toString());
+                                                    }
 
                           //sql += value ? (row.getCell(14).result != '') || row.getCell(14).result || row.getCell(14).result==0  ? row.getCell(14).result.toFixed(5) : ''  : row.getCell(14).value ? row.getCell(14).value : '';
                           sql += value ? (row.getCell(14).result != '') || row.getCell(14).result || row.getCell(14).result==0  ? mystr.toString() : ''  : row.getCell(14).value ? row.getCell(14).value : '';
@@ -707,7 +710,8 @@ app.post("/master_data/upload", async (req, res) => {
                           value = row.getCell(15).formula;
 
 
-
+                                                                              if (value)
+                                                                              {
                                                                               str = row.getCell(15).result.toFixed(7).toString();
                                                                               mystr = new Array();
                                                                               console.log("output string="+str);
@@ -746,10 +750,7 @@ app.post("/master_data/upload", async (req, res) => {
                                                                                }
                                                                               mystr = mystr.join('');
                                                                               console.log("output string="+mystr.toString());
-
-
-
-
+                                                                              }
 
                           //sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? row.getCell(15).result.toFixed(6)  : ''  : row.getCell(15).value ? row.getCell(15).value : '';
                           sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? mystr.toString()  : ''  : row.getCell(15).value ? row.getCell(15).value : '';
@@ -762,7 +763,8 @@ app.post("/master_data/upload", async (req, res) => {
                           sql += "','";
                           value = row.getCell(17).formula;
 
-
+                                                                                                        if (value)
+                                                                                                        {
                                                                                                         str = row.getCell(17).result.toFixed(7).toString();
                                                                                                         mystr = new Array();
                                                                                                         console.log("output string="+str);
@@ -801,7 +803,7 @@ app.post("/master_data/upload", async (req, res) => {
                                                                                                          }
                                                                                                         mystr = mystr.join('');
                                                                                                         console.log("output string="+mystr.toString());
-
+                                                                                                        }
 
 
                           //sql += value ? (row.getCell(17).result != '') || row.getCell(17).result || row.getCell(17).result==0  ? row.getCell(17).result.toFixed(6) : ''  : row.getCell(17).value ? row.getCell(17).value : '';
@@ -835,6 +837,8 @@ app.post("/master_data/upload", async (req, res) => {
                           sql += "','";
                           value = row.getCell(24).formula;
 
+                          if (value)
+                          {
                           str = row.getCell(24).result.toFixed(3).toString();
                           mystr = new Array();
                           console.log("output string="+str);
@@ -873,6 +877,7 @@ app.post("/master_data/upload", async (req, res) => {
                            }
                           mystr = mystr.join('');
                           console.log("output string="+mystr.toString());
+                          }
 
                           //sql += value ? (row.getCell(24).result != '') || row.getCell(24).result || row.getCell(24).result==0  ? row.getCell(24).result.toFixed(2)  : ''  : row.getCell(24).value ? row.getCell(24).value : '';
                           sql += value ? (row.getCell(24).result != '') || row.getCell(24).result || row.getCell(24).result==0  ? mystr.toString()  : ''  : row.getCell(24).value ? row.getCell(24).value : '';
@@ -880,7 +885,8 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(25).formula;
-
+                          if (value)
+                          {
                           str = row.getCell(25).result.toFixed(3).toString();
                           mystr = new Array();
                           console.log("output string="+str);
@@ -919,7 +925,7 @@ app.post("/master_data/upload", async (req, res) => {
                            }
                           mystr = mystr.join('');
                           console.log("output string="+mystr.toString());
-
+                          }
                           //sql += value ? (row.getCell(25).result != '') || row.getCell(25).result || row.getCell(25).result==0  ? row.getCell(25).result.toFixed(2) : ''  : row.getCell(25).value ? row.getCell(25).value : '';
                           sql += value ? (row.getCell(25).result != '') || row.getCell(25).result || row.getCell(25).result==0  ? mystr.toString() : ''  : row.getCell(25).value ? row.getCell(25).value : '';
 
