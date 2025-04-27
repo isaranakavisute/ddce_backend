@@ -554,7 +554,18 @@ app.post("/master_data/upload", async (req, res) => {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
      var oldpath = files.file[0].filepath;
-     var newpath =  'uploaded_files/myupload.xlsx';
+     //var newpath =  'uploaded_files/myupload.xlsx';
+     //var newpath = 'uploaded_files/' + files.file[0].originalFilename;
+     let ts = Date.now();
+     let date_time = new Date(ts);
+     let date = date_time.getDate();
+     let month = date_time.getMonth() + 1;
+     let year = date_time.getFullYear();
+     let hour = date_time.getHour();
+     let minute = date_time.getMinute();
+     let second = date_time.getSecond();
+     let timestamp = year + "_" + month + "_" + date + "_" + hour + "_" + minute + "_" + second;
+     var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
      fs.rename(oldpath, newpath, async function (err) {
        if (err)
        {
@@ -578,7 +589,7 @@ app.post("/master_data/upload", async (req, res) => {
        }
        else
        {
-          var wb = new Excel.Workbook();
+                    var wb = new Excel.Workbook();
                     const content = await wb.xlsx.readFile(newpath);
                     const worksheet = content.worksheets[0];
                     const rowStartIndex = 5;
@@ -972,7 +983,7 @@ app.post("/master_data/upload", async (req, res) => {
                          line_cnt++;
                          if (line_cnt > 1)
                           {
-  fs.writeFileSync('uploaded_files/sql.log', 'count sql#'+line_cnt+'->execute sql:'+line ,{ flag: 'a+' }, err => {});
+                           fs.writeFileSync('uploaded_files/sql.log', 'count sql#'+line_cnt+'->execute sql:'+line ,{ flag: 'a+' }, err => {});
                            sql = line.replace("\r\n", "");
                            console.log("count sql#"+line_cnt+"->execute sql:"+sql)
                            //sql = line.replace("\r\n", "");
