@@ -668,7 +668,7 @@ app.post("/master_data/upload", async (req, res) => {
        master_file_name: onlyfilename  + '_' + timestamp + '.' + onlyfileext,
        file_path: newpath
      };
-     axios.post('/master_history/add', axios_post_data, {
+     axios.post('http://deploy-aws.com:3006/master_history/add', axios_post_data, {
        headers: {
          'Content-Type': 'application/json',
          'User-Agent': 'Node.js'
