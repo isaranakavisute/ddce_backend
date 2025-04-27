@@ -983,31 +983,43 @@ app.post("/master_data/upload", async (req, res) => {
 
                      //);
 
-
-
-
-
-
+                      res.writeHead(200, {'Content-Type': 'application/json'});
+                      res.write
+                                         (
+                                          JSON.stringify
+                                          (
+                                           {
+                                            "status":true,
+                                            "upload_excel":
+                                             {
+                                              "result": "pass",
+                                              "oldpath": oldpath,
+                                              "newpath": newpath
+                                             }
+                                            }
+                                          )
+                                         );
+                      res.end();
 
         }
      });
-                    res.writeHead(200, {'Content-Type': 'application/json'});
-                    res.write
-                    (
-                     JSON.stringify
-                     (
-                      {
-                       "status":true,
-                       "upload_excel":
-                        {
-                         "result": "pass",
-                         "oldpath": oldpath,
-                         "newpath": newpath
-                        }
-                       }
-                     )
-                    );
-                    res.end();
+//                    res.writeHead(200, {'Content-Type': 'application/json'});
+//                    res.write
+//                    (
+//                     JSON.stringify
+//                     (
+//                      {
+//                       "status":true,
+//                       "upload_excel":
+//                        {
+//                         "result": "pass",
+//                         "oldpath": oldpath,
+//                         "newpath": newpath
+//                        }
+//                       }
+//                     )
+//                    );
+//                    res.end();
      });
      //db.end();
 });
