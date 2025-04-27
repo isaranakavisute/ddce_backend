@@ -149,9 +149,9 @@ app.post("/master_history/add", async (req, res) => {
     const config = require('./config');
     const helper = require('./helper');
 
-    sql = "SET GLOBAL time_zone = 'Asia/Bangkok'";
-    console.log(sql);
-    await db.query(sql);
+//    sql = "SET GLOBAL time_zone = 'Asia/Bangkok'";
+//    console.log(sql);
+//    await db.query(sql);
 
     sql = "insert into master_pricelist_history(master_file_name,file_path)";
     sql += " values ("
