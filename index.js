@@ -5,6 +5,7 @@ const port = 3006;
 const axios = require('axios');
 
 //const port = 3007;
+process.env.TZ ="Asia/Bangkok";
 
 const webCrawlerRouter = require("./routes/webcrawler");
 const loginRouter = require("./routes/login");
