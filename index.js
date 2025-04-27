@@ -589,11 +589,12 @@ app.post("/master_data/upload", async (req, res) => {
                     //const newList = await Promise.all(
                     //await Promise.all(
 
-                    await Promise.all(
+                    //await Promise.all(
                      //rows.map(async (row) => {})
                     //);
 
-
+                    //fs.writeFile('/uploaded_files/temp.txt', 'start', { flag: 'w+' }, err => {});
+                    fs.writeFileSync('uploaded_files/temp.txt', 'start');
 
                     rows.map(async (row) => {
 
@@ -949,14 +950,20 @@ app.post("/master_data/upload", async (req, res) => {
                           sql += "')";
                           console.log(sql);
                           console.log("---");
-                          await db.query(sql);
+
+                          //write to file
+                          //fs.writeFileSync('/uploaded_files/temp.txt', sql);
+                          fs.writeFile('uploaded_files/temp.txt', sql, { flag: 'a+' }, err => {});
+
+
+                          //await db.query(sql);
                        })
 
 
 
 
 
-                     );
+                     //);
 
 
 
