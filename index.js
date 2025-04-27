@@ -4032,7 +4032,7 @@ app.post("/news_info/add", async (req, res) => {
     else
      sql += "null";
 
-    sql += "',";
+    sql += ",";
 
     if (req.body.content)
     {
