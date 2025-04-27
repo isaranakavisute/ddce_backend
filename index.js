@@ -595,6 +595,8 @@ app.post("/master_data/upload", async (req, res) => {
 
                     //fs.writeFile('/uploaded_files/temp.txt', 'start', { flag: 'w+' }, err => {});
                     fs.writeFileSync('uploaded_files/temp.txt', 'start'+'\r\n');
+                    fs.writeFileSync('uploaded_files/sql.log', 'start'+'\r\n');
+
 
                     rows.map(async (row) => {
 
@@ -970,10 +972,12 @@ app.post("/master_data/upload", async (req, res) => {
                          line_cnt++;
                          if (line_cnt > 1)
                           {
+  fs.writeFileSync('uploaded_files/sql.log', 'count sql#'+line_cnt+'->execute sql:'+line ,{ flag: 'a+' }, err => {});
                            sql = line.replace("\r\n", "");
                            console.log("count sql#"+line_cnt+"->execute sql:"+sql)
                            //sql = line.replace("\r\n", "");
                            await db.query(sql);
+                           //fs.writeFileSync('uploaded_files/sql.log', 'start'+'\r\n');
                           }
                        });
 
