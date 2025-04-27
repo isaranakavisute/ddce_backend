@@ -3955,7 +3955,18 @@ app.post("/news_info/listall", async (req, res) => {
  const db = require('./db');
  const config = require('./config');
  const helper = require('./helper');
- sql = "select * from news_info";
+
+ //sql = "select * from news_info";
+
+ sql = "select cast(news_id as char) as news_id,";
+ sql += "cast(title as char) as title,";
+ sql += "cast(content as char) as content,";
+ sql += "cast(news_date as char) as news_date,";
+ sql += "cast(showing_order as char) as showing_order,";
+ sql += "cast(short_content as char) as short_content,";
+ sql += "cast(short_contentas char) as short_content";
+ sql += " from news_info";
+
  console.log(sql);
  var results = await db.query(sql);
  console.log(results);
