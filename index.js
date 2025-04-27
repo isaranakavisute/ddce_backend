@@ -565,7 +565,11 @@ app.post("/master_data/upload", async (req, res) => {
      let minute = date_time.getMinutes();
      let second = date_time.getSeconds();
      let timestamp = year + "_" + month + "_" + date + "_" + hour + "_" + minute + "_" + second;
-     var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
+     let filewithext = files.file[0].originalFilename;
+     let onlyfilename = filewithext.split(".")[0];
+     let onlyfileext = filewithext.split(".")[1];
+     //var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
+     var newpath = 'uploaded_files/' + onlyfilename  + '_' + timestamp + '.' + onlyfileext;
      fs.rename(oldpath, newpath, async function (err) {
        if (err)
        {
