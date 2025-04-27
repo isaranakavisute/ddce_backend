@@ -3964,7 +3964,8 @@ app.post("/news_info/listall", async (req, res) => {
  sql += "cast(news_date as char) as news_date,";
  sql += "cast(showing_order as char) as showing_order,";
  sql += "cast(short_content as char) as short_content,";
- sql += "cast(short_content as char) as short_content";
+ sql += "cast(short_content as char) as short_content,";
+ sql += "cast(news_up_time as char) as news_up_time";
  sql += " from news_info";
 
  console.log(sql);
