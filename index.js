@@ -149,7 +149,7 @@ app.post("/master_history/add", async (req, res) => {
     const config = require('./config');
     const helper = require('./helper');
 
-    sql = "SET time_zone = 'Asia/Bangkok'";
+    sql = "SET GLOBAL time_zone = 'Asia/Bangkok'";
     console.log(sql);
     await db.query(sql);
 
@@ -669,7 +669,7 @@ app.post("/master_data/upload", async (req, res) => {
      //var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
      var newpath = 'uploaded_files/' + onlyfilename  + '_' + timestamp + '.' + onlyfileext;
 
-     sql = "SET time_zone = 'Asia/Bangkok'";
+     sql = "SET GLOBAL time_zone = 'Asia/Bangkok'";
      db.query(sql);
 
      const axios_post_data = {
