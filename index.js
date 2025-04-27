@@ -4016,6 +4016,85 @@ app.post("/news_info/update", async (req, res) => {
     res.end();
 });
 
+app.post("/news_info/add", async (req, res) => {
+    const db = require('./db');
+    const config = require('./config');
+    const helper = require('./helper');
+
+    sql = "insert into news_info(title,content,news_update,showing_order,short_content) values (";
+
+    if (req.body.title)
+    {
+     sql += "'";
+     sql += req.body.title;
+     sql += "'";
+    }
+    else
+     sql += "null";
+
+    sql += "',";
+
+    if (req.body.content)
+    {
+     sql += "'";
+     sql += req.body.content;
+     sql += "'";
+    }
+    else
+     sql += "null";
+
+    sql += "',";
+
+    sql += "'";
+    let ts = Date.now();
+    let date_time = new Date(ts);
+    let date = date_time.getDate();
+    let month = date_time.getMonth() + 1;
+    let year = date_time.getFullYear();
+    //console.log(year + "-" + month + "-" + date);
+    sql += year + "-" + month + "-" + date;
+    sql += "',";
+
+    if (req.body.showing_order)
+    {
+     sql += req.body.showing_order;
+    }
+    else
+     sql += "null";
+
+    sql += ",";
+
+    if (req.body.short_content)
+    {
+     sql += "'";
+     sql += req.body.short_content;
+     sql += "'";
+    }
+    else
+     sql += "null";
+
+    sql += ")";
+
+    console.log(sql);
+    await db.query(sql);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+              res.write
+              (
+               JSON.stringify
+               (
+                {
+                 "status":true,
+                 "insert_record_to_news_info":
+                  {
+                   "result": "pass"
+                  }
+                 }
+               )
+              );
+    res.end();
+});
+
+
 app.post("/news_info/delete", async (req, res) => {
     const db = require('./db');
     const config = require('./config');
