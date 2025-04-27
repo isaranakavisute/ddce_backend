@@ -4021,7 +4021,7 @@ app.post("/news_info/add", async (req, res) => {
     const config = require('./config');
     const helper = require('./helper');
 
-    sql = "insert into news_info(title,content,news_update,showing_order,short_content) values (";
+    sql = "insert into news_info(title,content,news_date,showing_order,short_content) values (";
 
     if (req.body.title)
     {
