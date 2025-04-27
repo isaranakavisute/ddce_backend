@@ -149,6 +149,10 @@ app.post("/master_history/add", async (req, res) => {
     const config = require('./config');
     const helper = require('./helper');
 
+    sql = "SET time_zone = 'Asia/Bangkok'";
+    console.log(sql);
+    await db.query(sql);
+
     sql = "insert into master_pricelist_history(master_file_name,file_path)";
     sql += " values ("
 
@@ -167,6 +171,7 @@ app.post("/master_history/add", async (req, res) => {
 
 
     sql += ")";
+
     console.log(sql);
     await db.query(sql);
     res.writeHead(200, {'Content-Type': 'application/json'});
@@ -663,6 +668,9 @@ app.post("/master_data/upload", async (req, res) => {
      let onlyfileext = filewithext.split(".")[1];
      //var newpath = 'uploaded_files/' + files.file[0].originalFilename + '_' + timestamp;
      var newpath = 'uploaded_files/' + onlyfilename  + '_' + timestamp + '.' + onlyfileext;
+
+     sql = "SET time_zone = 'Asia/Bangkok'";
+     db.query(sql);
 
      const axios_post_data = {
        master_file_name: onlyfilename  + '_' + timestamp + '.' + onlyfileext,
