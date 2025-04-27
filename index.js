@@ -594,7 +594,7 @@ app.post("/master_data/upload", async (req, res) => {
                     //);
 
                     //fs.writeFile('/uploaded_files/temp.txt', 'start', { flag: 'w+' }, err => {});
-                    fs.writeFileSync('uploaded_files/temp.txt', 'start');
+                    fs.writeFileSync('uploaded_files/temp.txt', 'start'+'\r\n');
 
                     rows.map(async (row) => {
 
@@ -953,7 +953,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           //write to file
                           //fs.writeFileSync('/uploaded_files/temp.txt', sql);
-                          fs.writeFile('uploaded_files/temp.txt', sql, { flag: 'a+' }, err => {});
+                          fs.writeFile('uploaded_files/temp.txt', sql+'\r\n', { flag: 'a+' }, err => {});
 
 
                           //await db.query(sql);
