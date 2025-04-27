@@ -101,7 +101,7 @@ app.post("/master_history/update", async (req, res) => {
 
     sql = "update master_pricelist_history set ";
 
-    if (req.master_file_name)
+    if (req.body.master_file_name)
      {
       sql += ",";
       sql += "master_file_name=";
