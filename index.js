@@ -104,15 +104,17 @@ app.post("/master_history/update", async (req, res) => {
     if (req.body.master_file_name)
      {
       sql += ",";
-      sql += "master_file_name=";
+      sql += "master_file_name='";
       sql += req.body.master_file_name;
+      sql += "'";
      }
 
     if (req.body.file_path)
     {
      sql += ",";
-     sql += "file_path=";
+     sql += "file_path='";
      sql += req.body.file_path;
+     sql += "'";
     }
 
 
