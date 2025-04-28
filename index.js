@@ -879,6 +879,7 @@ app.post("/master_data/upload", async (req, res) => {
                                                                               {
                                                                                console.log("error:"+error);
                                                                               }
+
                                                                               mystr = new Array();
                                                                               console.log("output string="+str);
                                                                               cnt = -1;
@@ -934,7 +935,15 @@ app.post("/master_data/upload", async (req, res) => {
 
                                                                                                         if (value)
                                                                                                         {
+                                                                                                        try
+                                                                                                        {
                                                                                                         str = row.getCell(17).result.toFixed(7).toString();
+                                                                                                        }
+                                                                                                        catch (error)
+                                                                                                        {
+                                                                                                         console.log("error="+error);
+                                                                                                        }
+
                                                                                                         mystr = new Array();
                                                                                                         console.log("output string="+str);
                                                                                                         cnt = -1;
