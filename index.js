@@ -841,6 +841,18 @@ app.post("/master_data/upload", async (req, res) => {
                           value = row.getCell(15).formula;
 
 
+                                                                             try {
+                                                                                 const cell = row.getCell(15);
+//                                                                                 if(cell.value === undefined || cell.value === null) {
+//                                                                                   return '';
+//                                                                                 }
+//                                                                                 return cell.value;
+                                                                               } catch (error) {
+                                                                                 console.error(`Error accessing cell`, error);
+                                                                                 //return null;
+                                                                               }
+
+
                                                                              if (value)
                                                                              {
                                                                               if ( (row.getCell(15)) && (row.getCell(15).result) )
