@@ -842,22 +842,22 @@ app.post("/master_data/upload", async (req, res) => {
                           value = row.getCell(15).formula;
 
 
-                                                                             try {
-                                                                                 const cell = row.getCell(15);
-//                                                                                 if(cell.value === undefined || cell.value === null) {
-//                                                                                   return '';
-//                                                                                 }
-//                                                                                 return cell.value;
-                                                                               } catch (error) {
-                                                                                 console.error(`Error accessing cell`, error);
-                                                                                 //return null;
-                                                                               }
+//                                                                             try {
+//                                                                                 const cell = row.getCell(15);
+////                                                                                 if(cell.value === undefined || cell.value === null) {
+////                                                                                   return '';
+////                                                                                 }
+////                                                                                 return cell.value;
+//                                                                               } catch (error) {
+//                                                                                 console.error(`Error accessing cell`, error);
+//                                                                                 //return null;
+//                                                                               }
 
 
                                                                              if (value)
                                                                              {
-                                                                              if ( (row.getCell(15)) && (row.getCell(15).result) )
-                                                                              {
+                                                                              //if ( (row.getCell(15)) && (row.getCell(15).result) )
+                                                                              //{
                                                                               str = row.getCell(15).result.toFixed(7).toString();
                                                                               mystr = new Array();
                                                                               console.log("output string="+str);
@@ -896,9 +896,9 @@ app.post("/master_data/upload", async (req, res) => {
                                                                                }
                                                                               mystr = mystr.join('');
                                                                               console.log("output string="+mystr.toString());
-                                                                              }
-                                                                              else
-                                                                               mystr = "";
+                                                                              //}
+                                                                              //else
+                                                                               //mystr = "";
                                                                              }
 
                           //sql += value ? (row.getCell(15).result != '') || row.getCell(15).result || row.getCell(15).result==0  ? row.getCell(15).result.toFixed(6)  : ''  : row.getCell(15).value ? row.getCell(15).value : '';
