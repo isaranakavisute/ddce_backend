@@ -843,7 +843,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                                                                              if (value)
                                                                              {
-                                                                              if (row.getCell(15).result)
+                                                                              if ( (row.getCell(15)) && (row.getCell(15).result) )
                                                                               {
                                                                               str = row.getCell(15).result.toFixed(7).toString();
                                                                               mystr = new Array();
