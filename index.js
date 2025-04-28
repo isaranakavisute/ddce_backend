@@ -711,8 +711,8 @@ app.post("/master_data/upload", async (req, res) => {
                     const content = await wb.xlsx.readFile(newpath);
                     const worksheet = content.worksheets[0];
                     const rowStartIndex = 5;
-                    //const numberOfRows = worksheet.rowCount - 4;
-                    const numberOfRows = worksheet.rowCount - 5;
+                    const numberOfRows = worksheet.rowCount - 4;
+                    //const numberOfRows = worksheet.rowCount - 5;
                     const rows = worksheet.getRows(rowStartIndex, numberOfRows) ?? [];
                     row_cnt=0;
 
