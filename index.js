@@ -1031,7 +1031,7 @@ app.post("/master_data/upload", async (req, res) => {
                             mystr = "";
                             try
                             {
-                             mystr = row.getCell(18).result;
+                             mystr = row.getCell(18).result.toFixed(2).toString();
                             }
                             catch (error)
                             {
@@ -1053,7 +1053,7 @@ app.post("/master_data/upload", async (req, res) => {
                            mystr = "";
                            try
                            {
-                            mystr = row.getCell(19).result;
+                            mystr = row.getCell(19).result.toFixed(2).toString();;
                            }
                            catch (error)
                            {
@@ -1078,7 +1078,7 @@ app.post("/master_data/upload", async (req, res) => {
                            mystr = "";
                            try
                            {
-                            mystr = row.getCell(19).result;
+                            mystr = row.getCell(21).result.toFixed(2).toString();
                            }
                            catch (error)
                            {
@@ -1231,7 +1231,7 @@ app.post("/master_data/upload", async (req, res) => {
                            mystr = "";
                            try
                            {
-                            mystr = row.getCell(19).result;
+                            mystr = row.getCell(26).result.toFixed(2).toString();
                            }
                            catch (error)
                            {
