@@ -738,8 +738,8 @@ app.post("/master_data/upload", async (req, res) => {
 //                          if (row_cnt > numberOfRows)
 //                           break;
 
-                          if (row_cnt <= numberOfRows)
-                          {
+//                          if (row_cnt <= numberOfRows)
+//                          {
 //
 //
 //                          }
@@ -868,6 +868,10 @@ app.post("/master_data/upload", async (req, res) => {
                                                                              {
                                                                               //if ( (row.getCell(15)) && (row.getCell(15).result) )
                                                                               //{
+
+                                                                              console.log("debug error code="+row.getCell(15).value);
+
+
                                                                               str = row.getCell(15).result.toFixed(7).toString();
                                                                               mystr = new Array();
                                                                               console.log("output string="+str);
@@ -1123,7 +1127,7 @@ app.post("/master_data/upload", async (req, res) => {
 
                           //await db.query(sql);
 
-                         }
+                         //}
 
                        })
 
