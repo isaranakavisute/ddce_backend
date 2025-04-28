@@ -1025,11 +1025,46 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(18).formula;
-                          sql += value ? (row.getCell(18).result != '') || row.getCell(18).result || row.getCell(18).result==0  ? row.getCell(18).result : ''  : row.getCell(18).value ? row.getCell(18).value : '';
+
+                          if (value)
+                           {
+                            mystr = "";
+                            try
+                            {
+                             mystr = row.getCell(18).result;
+                            }
+                            catch (error)
+                            {
+                             console.log("error="+error);
+                             mystr = "";
+                            }
+                           }
+
+
+                          //sql += value ? (row.getCell(18).result != '') || row.getCell(18).result || row.getCell(18).result==0  ? row.getCell(18).result : ''  : row.getCell(18).value ? row.getCell(18).value : '';
+                          sql += value ? (row.getCell(18).result != '') || row.getCell(18).result || row.getCell(18).result==0  ?  mystr.toString() : ''  : row.getCell(18).value ? row.getCell(18).value : '';
+
 
                           sql += "','";
                           value = row.getCell(19).formula;
-                          sql += value ? (row.getCell(19).result != '') || row.getCell(19).result || row.getCell(19).result==0  ? row.getCell(19).result : ''  : row.getCell(19).value ? row.getCell(19).value : '';
+
+                          if (value)
+                          {
+                           mystr = "";
+                           try
+                           {
+                            mystr = row.getCell(19).result;
+                           }
+                           catch (error)
+                           {
+                            console.log("error="+error);
+                            mystr = "";
+                           }
+                          }
+
+                          //sql += value ? (row.getCell(19).result != '') || row.getCell(19).result || row.getCell(19).result==0  ? row.getCell(19).result : ''  : row.getCell(19).value ? row.getCell(19).value : '';
+                          sql += value ? (row.getCell(19).result != '') || row.getCell(19).result || row.getCell(19).result==0  ?  mystr.toString() : ''  : row.getCell(19).value ? row.getCell(19).value : '';
+
 
                           sql += "','";
                           value = row.getCell(20).formula;
@@ -1037,7 +1072,24 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(21).formula;
-                          sql += value ? (row.getCell(21).result != '') || row.getCell(21).result || row.getCell(21).result==0  ? row.getCell(21).result : ''  : row.getCell(21).value ? row.getCell(21).value : '';
+
+                          if (value)
+                          {
+                           mystr = "";
+                           try
+                           {
+                            mystr = row.getCell(19).result;
+                           }
+                           catch (error)
+                           {
+                            console.log("error="+error);
+                            mystr = "";
+                           }
+                          }
+
+                          //sql += value ? (row.getCell(21).result != '') || row.getCell(21).result || row.getCell(21).result==0  ? row.getCell(21).result : ''  : row.getCell(21).value ? row.getCell(21).value : '';
+                          sql += value ? (row.getCell(21).result != '') || row.getCell(21).result || row.getCell(21).result==0  ? mystr.toString() : ''  : row.getCell(21).value ? row.getCell(21).value : '';
+
 
                           sql += "','";
                           value = row.getCell(22).formula;
@@ -1173,7 +1225,25 @@ app.post("/master_data/upload", async (req, res) => {
 
                           sql += "','";
                           value = row.getCell(26).formula;
-                          sql += value ? (row.getCell(26).result != '') || row.getCell(26).result || row.getCell(26).result==0  ? row.getCell(26).result : ''  : row.getCell(26).value ? row.getCell(26).value : '';
+
+                          if (value)
+                          {
+                           mystr = "";
+                           try
+                           {
+                            mystr = row.getCell(19).result;
+                           }
+                           catch (error)
+                           {
+                            console.log("error="+error);
+                            mystr = "";
+                           }
+                          }
+
+
+                          //sql += value ? (row.getCell(26).result != '') || row.getCell(26).result || row.getCell(26).result==0  ? row.getCell(26).result : ''  : row.getCell(26).value ? row.getCell(26).value : '';
+                          sql += value ? (row.getCell(26).result != '') || row.getCell(26).result || row.getCell(26).result==0  ? mystr.toString() : ''  : row.getCell(26).value ? row.getCell(26).value : '';
+
 
                           sql += "','";
                           value = row.getCell(27).formula;
