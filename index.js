@@ -727,6 +727,8 @@ app.post("/master_data/upload", async (req, res) => {
                     fs.writeFileSync('uploaded_files/temp.txt', 'start'+'\r\n');
                     fs.writeFileSync('uploaded_files/sql.log', 'start'+'\r\n');
 
+                    console.log("total rows="+numberOfRows);
+                    return;
 
                     rows.map(async (row) => {
 
