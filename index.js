@@ -1072,7 +1072,14 @@ app.post("/master_data/upload", async (req, res) => {
                           value = row.getCell(25).formula;
                           if (value)
                           {
+                          try
+                          {
                           str = row.getCell(25).result.toFixed(3).toString();
+                          }
+                          catch (error)
+                          {
+                           console.log("error="+error);
+                          }
                           mystr = new Array();
                           console.log("output string="+str);
                           cnt = -1;
