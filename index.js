@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const port = 3006;
 const axios = require('axios');
-
+const sleep = require('sleep-promise');
 //const port = 3007;
 process.env.TZ ="Asia/Bangkok";
 
@@ -1291,6 +1291,9 @@ app.post("/master_data/upload", async (req, res) => {
                            //sql = line.replace("\r\n", "");
                            await db.query(sql);
                            //fs.writeFileSync('uploaded_files/sql.log', 'start'+'\r\n');
+                           //console.log("sleep now");
+                           //await sleep(5000); // Pause for 5 seconds
+                           //console.log("wakeup now");
                           }
                        });
 

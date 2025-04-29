@@ -1,32 +1,38 @@
 const mysql = require('mysql2/promise');
 const config = require('./config');
 
-//var connection = null;
 
-//async function start()
-//{
-// connection = await mysql.createPool(config.db);
-//}
+const connection = mysql.createPool(config.db);
 
-//const connection = mysql.createPool(config.db);
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function query(sql, params) {
 
-  const connection = await mysql.createPool(config.db);
+ let myconnection;
+ let myresults;
 
-  const [results, ] = await connection.execute(sql, params);
+ try {
+    // Getting a connection from the pool
+    myconnection = await connection.getConnection();
+    const [results, ] = await myconnection.execute(sql);
+    myresults = results;
+  } catch (error) {
+    console.error('Error executing query:', error);
+  } finally {
+    await sleep(2000);
 
-  await connection.end();
+    // Don't forget to release the connection when finished!
+    if (myconnection) myconnection.release();
+  }
 
-  return results;
+
+  return myresults;
+
 }
 
-//async function end() {
-//  //const connection = await mysql.createPool(config.db);
-//  //const [results, ] = await connection.execute(sql, params);
-//  await connection.end();
-//  return results;
-//}
+
 
 module.exports = {
   query
