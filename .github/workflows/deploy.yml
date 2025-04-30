@@ -30,4 +30,5 @@ jobs:
           git fetch
           git pull
           sudo docker build -t isara40618/githubaction_image .
+          sudo docker push isara40618/githubaction_image
           "
