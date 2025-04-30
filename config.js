@@ -3,7 +3,9 @@ const config = {
       host: "localhost",
       user: "isara",
       password: "1234",
-      database: "mydb",
+      //database: "mydb",
+      //tsubakimoto
+      database: "tsubakimoto",
       //connectTimeout: 60000,
       port: 3307,    //3306
       connectionLimit:  3,
