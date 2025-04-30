@@ -28,5 +28,5 @@ jobs:
           git checkout production
           git fetch
           git pull
-          docker build -t isara40618/githubaction_image .
+          sudo docker build -t isara40618/githubaction_image .
           "
