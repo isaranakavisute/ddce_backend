@@ -20,7 +20,6 @@ jobs:
           ssh-private-key: ${{ secrets.PEM_CONTENT}}  # Ensure this secret contains the new private key
 
       - name: Deploy
-        env:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@$deploy-aws.com " 
           mkdir deploy_dir
