@@ -23,6 +23,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@deploy-aws.com "
           cd deploy_dir
+          sudo rm -r Tsubakimoto_backend
           git clone https://isara40618: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@github.com/isaranakavisute/Tsubakimoto_backend.git 
           git checkout production
           git fetch
