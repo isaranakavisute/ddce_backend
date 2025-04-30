@@ -21,6 +21,5 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@$deploy-aws.com " 
+          ssh -o StrictHostKeyChecking=no ubuntu@$deploy-aws.com
           mkdir deploy_dir
-          "
