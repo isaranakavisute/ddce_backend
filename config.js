@@ -4,7 +4,7 @@ const config = {
       user: "isara",
       password: "1234",
       //database: "mydb",
-      //tsubakimoto
+      //tsubakimoto ...
       database: "tsubakimoto",
       //connectTimeout: 60000,
       port: 3307,    //3306
