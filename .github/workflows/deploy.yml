@@ -22,8 +22,9 @@ jobs:
       - name: Deploy
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@deploy-aws.com "
+          sudo rm -r deploy_dir
+          mkdir deploy_dir
           cd deploy_dir
-          sudo rm -r Tsubakimoto_backend
           git clone https://isara40618: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@github.com/isaranakavisute/Tsubakimoto_backend.git 
           cd Tsubakimoto_backend
           git checkout production
@@ -31,4 +32,5 @@ jobs:
           git pull
           sudo docker build -t isara40618/githubaction_image .
           sudo docker push isara40618/githubaction_image
+          sudo docker run --name=tsubakimoto_backend --net=host --restart on-failure -d isara40618/githubaction_image
           "
