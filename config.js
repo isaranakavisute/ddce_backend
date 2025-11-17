@@ -5,9 +5,10 @@ const config = {
       password: "1234",
       //database: "mydb",
       //tsubakimoto ...
-      database: "tsubakimoto",
+      //database: "tsubakimoto",
+      database: "akt1",
       //connectTimeout: 60000,
-      port: 3307,    //3306
+      port: 3306,    //3307
       connectionLimit:  3,
       timezone: "+07:00",
       waitForConnections: true,
